@@ -11,5 +11,24 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
+// ── Startup diagnostics ────────────────────────────────────────────────────
+const missing = Object.entries(firebaseConfig)
+  .filter(([, v]) => !v)
+  .map(([k]) => k);
+
+if (missing.length > 0) {
+  console.error("[Firebase] MISSING env vars:", missing);
+  console.error(
+    "[Firebase] Fix: ensure all VITE_FIREBASE_* variables are set in Replit Secrets.",
+  );
+} else {
+  console.info(
+    "[Firebase] ✅ All config keys present. Project:",
+    firebaseConfig.projectId,
+  );
+}
+
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+
+console.info("[Firebase] Firestore initialized. DB:", db.app.options.projectId);

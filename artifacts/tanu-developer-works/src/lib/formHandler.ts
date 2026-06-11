@@ -45,17 +45,15 @@ export type AnyFormData = ContactFormData | QuoteFormData | BookingFormData;
 export interface SubmitResult {
   success: boolean;
   message: string;
+  firebaseError?: string;
 }
 
 async function submitToGoogleSheets(
   formType: FormType,
   data: AnyFormData,
-): Promise<SubmitResult> {
+): Promise<boolean> {
   const webhookUrl = getSheetsWebhookUrl();
-
-  if (!webhookUrl) {
-    return { success: false, message: "Sheets webhook not configured." };
-  }
+  if (!webhookUrl) return false;
 
   let row: unknown[];
   let sheetName: string;
@@ -95,20 +93,24 @@ async function submitToGoogleSheets(
     sheetName = SHEET_NAMES.demo;
   }
 
-  const response = await fetch(webhookUrl, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: buildSheetsPayload(sheetName, row),
-  });
-
-  if (!response.ok) throw new Error(`Sheets webhook error: ${response.status}`);
-  return { success: true, message: "Saved to Google Sheets." };
+  try {
+    const response = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: buildSheetsPayload(sheetName, row),
+    });
+    console.info("[Sheets]", response.ok ? "✅ Saved" : `❌ HTTP ${response.status}`);
+    return response.ok;
+  } catch (err) {
+    console.warn("[Sheets] Failed:", err);
+    return false;
+  }
 }
 
 async function persistToFirebase(
   formType: FormType,
   data: AnyFormData,
-): Promise<void> {
+): Promise<{ ok: boolean; error?: string }> {
   try {
     if (formType === "contact") {
       const d = data as ContactFormData;
@@ -133,8 +135,10 @@ async function persistToFirebase(
       const d = data as BookingFormData;
       await saveDemoRequest({ businessType: d.service, source: "booking_form" });
     }
-  } catch (err) {
-    console.error("[formHandler] Firebase save error:", err);
+    return { ok: true };
+  } catch (err: unknown) {
+    const code = (err as { code?: string })?.code ?? "unknown";
+    return { ok: false, error: code };
   }
 }
 
@@ -142,14 +146,21 @@ export async function submitForm(
   formType: FormType,
   data: AnyFormData,
 ): Promise<SubmitResult> {
-  // Always persist to Firebase first (primary store)
-  await persistToFirebase(formType, data);
+  // Primary store: Firebase
+  const fbResult = await persistToFirebase(formType, data);
 
-  // Also try Google Sheets (secondary store)
-  try {
-    await submitToGoogleSheets(formType, data);
-  } catch {
-    // Sheets failure is non-blocking
+  // Secondary store: Google Sheets (non-blocking)
+  submitToGoogleSheets(formType, data).catch(() => {});
+
+  if (!fbResult.ok) {
+    const isPermission = fbResult.error === "permission-denied";
+    return {
+      success: false,
+      message: isPermission
+        ? "⚠️ Could not save your message (Firestore permissions). Please contact via WhatsApp."
+        : "Something went wrong saving your message. Please try WhatsApp.",
+      firebaseError: fbResult.error,
+    };
   }
 
   return {

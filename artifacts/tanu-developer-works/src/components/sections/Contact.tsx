@@ -25,14 +25,14 @@ export function Contact() {
       message: fd.get("message") as string,
     };
 
-    try {
-      await submitForm("contact", data);
+    const result = await submitForm("contact", data);
+    if (result.success) {
       setSubmittedName(data.name.split(" ")[0]);
       setFormState("success");
-    } catch {
-      setErrorMsg("Something went wrong. Please try WhatsApp or email.");
+    } else {
+      setErrorMsg(result.message);
       setFormState("error");
-      setTimeout(() => setFormState("idle"), 8000);
+      setTimeout(() => setFormState("idle"), 10000);
     }
   };
 

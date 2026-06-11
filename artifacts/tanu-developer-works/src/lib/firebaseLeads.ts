@@ -38,52 +38,66 @@ export interface DiscountLead {
   phone: string;
 }
 
-export async function saveContactSubmission(data: ContactLead) {
-  return addDoc(collection(db, "contact_submissions"), {
-    ...data,
-    source: "contact_form",
+async function write(collectionName: string, payload: Record<string, unknown>) {
+  const record = {
+    ...payload,
     page: window.location.pathname,
     deviceType: getDeviceType(),
     createdAt: serverTimestamp(),
+  };
+
+  console.info(`[Firebase] Writing to "${collectionName}"...`, {
+    keys: Object.keys(record),
   });
+
+  try {
+    const ref = await addDoc(collection(db, collectionName), record);
+    console.info(`[Firebase] ✅ Saved to "${collectionName}" → ID: ${ref.id}`);
+    return ref;
+  } catch (err: unknown) {
+    const code = (err as { code?: string })?.code ?? "unknown";
+    const message = (err as { message?: string })?.message ?? String(err);
+
+    console.error(`[Firebase] ❌ Write to "${collectionName}" failed.`);
+    console.error(`  Code: ${code}`);
+    console.error(`  Message: ${message}`);
+
+    if (code === "permission-denied") {
+      console.error(
+        "[Firebase] 🔒 PERMISSION DENIED — Firestore security rules are blocking this write.\n" +
+          "Fix: Go to Firebase Console → Firestore Database → Rules → set:\n\n" +
+          "rules_version = '2';\n" +
+          "service cloud.firestore {\n" +
+          "  match /databases/{database}/documents {\n" +
+          "    match /{document=**} {\n" +
+          "      allow write: if true;\n" +
+          "      allow read: if false;\n" +
+          "    }\n" +
+          "  }\n" +
+          "}\n\nThen click Publish.",
+      );
+    }
+
+    throw err; // re-throw so callers know it failed
+  }
 }
 
-export async function saveDemoRequest(data: DemoLead) {
-  return addDoc(collection(db, "demo_requests"), {
-    ...data,
-    source: "demo_section",
-    page: window.location.pathname,
-    deviceType: getDeviceType(),
-    createdAt: serverTimestamp(),
-  });
+export function saveContactSubmission(data: ContactLead) {
+  return write("contact_submissions", { ...data, source: "contact_form" });
 }
 
-export async function saveQuoteRequest(data: QuoteLead) {
-  return addDoc(collection(db, "quote_requests"), {
-    ...data,
-    source: "quote_form",
-    page: window.location.pathname,
-    deviceType: getDeviceType(),
-    createdAt: serverTimestamp(),
-  });
+export function saveDemoRequest(data: DemoLead) {
+  return write("demo_requests", { ...data, source: data.source ?? "demo_section" });
 }
 
-export async function saveScratchCardLead(data: ScratchLead) {
-  return addDoc(collection(db, "lead_forms"), {
-    ...data,
-    source: "scratch_card",
-    page: window.location.pathname,
-    deviceType: getDeviceType(),
-    createdAt: serverTimestamp(),
-  });
+export function saveQuoteRequest(data: QuoteLead) {
+  return write("quote_requests", { ...data, source: "quote_form" });
 }
 
-export async function saveDiscountLead(data: DiscountLead) {
-  return addDoc(collection(db, "discount_leads"), {
-    ...data,
-    source: "exit_intent_popup",
-    page: window.location.pathname,
-    deviceType: getDeviceType(),
-    createdAt: serverTimestamp(),
-  });
+export function saveScratchCardLead(data: ScratchLead) {
+  return write("lead_forms", { ...data, source: "scratch_card" });
+}
+
+export function saveDiscountLead(data: DiscountLead) {
+  return write("discount_leads", { ...data, source: "exit_intent_popup" });
 }

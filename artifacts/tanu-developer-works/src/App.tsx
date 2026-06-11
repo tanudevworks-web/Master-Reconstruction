@@ -8,6 +8,7 @@ import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
+import { SocialProofCounter } from "@/components/sections/SocialProofCounter";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { FounderProfile } from "@/components/sections/FounderProfile";
 import { Services } from "@/components/sections/Services";
@@ -17,6 +18,7 @@ import { Process } from "@/components/sections/Process";
 import { CostComparison } from "@/components/sections/CostComparison";
 import { ReadinessScore } from "@/components/sections/ReadinessScore";
 import { Pricing } from "@/components/sections/Pricing";
+import { PaymentBadge } from "@/components/sections/PaymentBadge";
 import { NameGenerator } from "@/components/sections/NameGenerator";
 import { PriceCalculator } from "@/components/sections/PriceCalculator";
 import { ScratchCard } from "@/components/sections/ScratchCard";
@@ -33,6 +35,7 @@ function HomePage() {
       {/* — Awareness — */}
       <Hero />
       <Stats />
+      <SocialProofCounter />
       <WhyChooseUs />
 
       {/* — Trust — */}
@@ -52,6 +55,7 @@ function HomePage() {
 
       {/* — Conversion — */}
       <Pricing />
+      <PaymentBadge />
       <NameGenerator />
       <PriceCalculator />
 
