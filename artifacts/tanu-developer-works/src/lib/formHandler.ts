@@ -99,7 +99,10 @@ async function submitToGoogleSheets(
       headers: { "Content-Type": "application/json" },
       body: buildSheetsPayload(sheetName, row),
     });
-    console.info("[Sheets]", response.ok ? "✅ Saved" : `❌ HTTP ${response.status}`);
+    console.info(
+      "[Sheets]",
+      response.ok ? "✅ Saved" : `❌ HTTP ${response.status}`,
+    );
     return response.ok;
   } catch (err) {
     console.warn("[Sheets] Failed:", err);
@@ -117,9 +120,9 @@ async function persistToFirebase(
       await saveContactSubmission({
         name: d.name,
         email: d.email,
-        phone: d.phone,
+        phone: d.phone ?? "",
         projectType: d.projectType,
-        budget: d.budget,
+        budget: d.budget ?? "",
         message: d.message,
       });
     } else if (formType === "quote") {
@@ -133,7 +136,10 @@ async function persistToFirebase(
       });
     } else {
       const d = data as BookingFormData;
-      await saveDemoRequest({ businessType: d.service, source: "booking_form" });
+      await saveDemoRequest({
+        businessType: d.service,
+        source: "booking_form",
+      });
     }
     return { ok: true };
   } catch (err: unknown) {
@@ -165,6 +171,7 @@ export async function submitForm(
 
   return {
     success: true,
-    message: "Your message has been received. I'll get back to you within 24 hours.",
+    message:
+      "Your message has been received. I'll get back to you within 24 hours.",
   };
 }
