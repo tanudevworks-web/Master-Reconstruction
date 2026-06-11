@@ -1,0 +1,267 @@
+# MASTER PROJECT RECONSTRUCTION PROMPT
+
+I have uploaded a ZIP file containing my existing website/project.
+
+Your job is to act as a senior full-stack engineer, UI/UX engineer, React architect, Firebase engineer, QA engineer, and deployment specialist.
+
+## PHASE 1 — DEEP ANALYSIS
+
+Before making ANY changes:
+
+1. Extract and inspect the entire uploaded project.
+
+2. Analyze:
+
+   * Folder structure
+   * Components
+   * Pages
+   * Routing
+   * Styling system
+   * Animations
+   * Assets
+   * Forms
+   * APIs
+   * Environment variables
+   * Build configuration
+   * Deployment configuration
+   * SEO configuration
+   * Existing backend integrations
+
+3. Create a complete understanding of how the current website works.
+
+4. Detect the exact stack being used:
+
+   * React
+   * Vite
+   * TypeScript
+   * JavaScript
+   * Tailwind CSS
+   * Framer Motion
+   * Firebase
+   * React Router
+   * Shadcn UI
+   * Any other libraries
+
+Do NOT redesign anything.
+
+---
+
+## PHASE 2 — EXACT RECREATION
+
+Recreate the uploaded website EXACTLY.
+
+Requirements:
+
+* Pixel-perfect recreation
+* Same design
+* Same layout
+* Same spacing
+* Same typography
+* Same colors
+* Same sections
+* Same animations
+* Same interactions
+* Same responsiveness
+* Same user experience
+
+Preserve:
+
+* Header
+* Navigation
+* Hero section
+* About section
+* Services section
+* Portfolio section
+* Testimonials
+* Contact section
+* Footer
+* All pages
+* All routes
+* All assets
+* All icons
+* All images
+
+Do not simplify anything.
+
+Do not replace features.
+
+Do not remove features.
+
+Keep everything visually identical.
+
+---
+
+## PHASE 3 — ERROR FIXING
+
+Find and fix:
+
+* Build errors
+* Runtime errors
+* Import errors
+* TypeScript errors
+* Dependency issues
+* Routing issues
+* Deployment issues
+* Console warnings
+* Broken links
+* Missing assets
+
+Ensure:
+
+npm install
+
+runs successfully.
+
+Ensure:
+
+npm run dev
+
+works without errors.
+
+Ensure:
+
+npm run build
+
+works without errors.
+
+---
+
+## PHASE 4 — FIREBASE INTEGRATION
+
+Integrate Firebase professionally.
+
+Configure:
+
+* Firebase App
+* Firebase Authentication
+* Firestore Database
+* Firebase Storage
+
+Create:
+
+firebase.ts
+
+or equivalent configuration.
+
+Use environment variables for:
+
+* API Key
+* Auth Domain
+* Project ID
+* Storage Bucket
+* Messaging Sender ID
+* App ID
+
+Never hardcode secrets.
+
+---
+
+## PHASE 5 — CONTACT FORM SYSTEM
+
+If contact forms exist:
+
+Connect them to Firebase.
+
+Store submissions inside Firestore.
+
+Save:
+
+* Name
+* Email
+* Phone
+* Subject
+* Message
+* Timestamp
+
+Add validation.
+
+Prevent empty submissions.
+
+Show success and error messages.
+
+---
+
+## PHASE 6 — PERFORMANCE
+
+Optimize:
+
+* Images
+* Bundle size
+* Loading speed
+* Lazy loading
+* Code splitting
+
+Maintain identical UI while improving performance.
+
+---
+
+## PHASE 7 — SEO
+
+Verify and improve:
+
+* Meta titles
+* Meta descriptions
+* Open Graph tags
+* Sitemap
+* Robots.txt
+* Structured data
+* Canonical URLs
+
+Do not change branding.
+
+---
+
+## PHASE 8 — RESPONSIVENESS
+
+Ensure:
+
+* Mobile
+* Tablet
+* Laptop
+* Desktop
+
+all work perfectly.
+
+Preserve original design on every screen size.
+
+---
+
+## PHASE 9 — PRODUCTION READINESS
+
+Prepare for deployment.
+
+Verify:
+
+* Environment variables
+* Build process
+* Production build
+* Firebase connectivity
+* Error handling
+
+The final project must be production-ready.
+
+---
+
+## PHASE 10 — FINAL REPORT
+
+After completion provide:
+
+1. Project architecture summary.
+2. All detected technologies.
+3. All fixes made.
+4. Firebase setup instructions.
+5. Environment variables required.
+6. Deployment instructions.
+7. Any remaining recommendations.
+
+IMPORTANT:
+
+* Preserve the exact appearance of the uploaded website.
+* Never redesign without permission.
+* Never remove features.
+* Never change branding.
+* Never replace functionality unless fixing a bug.
+* Think carefully before modifying code.
+* Complete the project as if it were being delivered to a paying client.
+
+Start by fully analyzing the uploaded ZIP and explaining your findings before making changes.
