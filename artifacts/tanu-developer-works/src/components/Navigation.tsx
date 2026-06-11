@@ -29,7 +29,7 @@ export function Navigation({ isDark, onToggleTheme }: Props) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (link: typeof links[0]) => {
+  const handleNavClick = (link: (typeof links)[0]) => {
     setIsOpen(false);
     if (link.path === "/projects") {
       setLocation("/projects");
@@ -55,22 +55,27 @@ export function Navigation({ isDark, onToggleTheme }: Props) {
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? "py-4 backdrop-blur-xl border-b"
-            : "py-6"
+          isScrolled ? "py-4 backdrop-blur-xl border-b" : "py-6"
         }`}
         style={{
           backgroundColor: isScrolled
-            ? isDark ? "rgba(5,5,5,0.9)" : "rgba(255,255,255,0.9)"
+            ? isDark
+              ? "rgba(5,5,5,0.9)"
+              : "rgba(255,255,255,0.9)"
             : "transparent",
-          borderBottomColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)",
+          borderBottomColor: isDark
+            ? "rgba(255,255,255,0.08)"
+            : "rgba(0,0,0,0.08)",
         }}
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
           <a
             href="/"
-            onClick={(e) => { e.preventDefault(); handleNavClick({ name: "Home", href: "#home", path: "/" }); }}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick({ name: "Home", href: "#home", path: "/" });
+            }}
             className="text-xl font-bold tracking-tight z-50 relative"
             data-interactive
             data-testid="nav-logo"
@@ -85,7 +90,10 @@ export function Navigation({ isDark, onToggleTheme }: Props) {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); handleNavClick(link); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(link);
+                }}
                 className="text-sm font-medium dark:text-gray-300 text-gray-600 hover:text-primary transition-colors"
                 data-interactive
                 data-testid={`nav-link-${link.name.toLowerCase()}`}
@@ -116,20 +124,15 @@ export function Navigation({ isDark, onToggleTheme }: Props) {
             </button>
 
             <a
-              href={`https://wa.me/918433553501?text=${encodeURIComponent("Hi Tanu, I'd like to book a free call to discuss my project.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-bold bg-green-500 hover:bg-green-600 text-white transition-colors shadow-sm"
-              data-interactive
-              data-testid="nav-book-call"
-            >
-              <Phone size={13} />
-              Book Free Call
-            </a>
-
-            <a
               href="#contact"
-              onClick={(e) => { e.preventDefault(); handleNavClick({ name: "Contact", href: "#contact", path: "/" }); }}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick({
+                  name: "Contact",
+                  href: "#contact",
+                  path: "/",
+                });
+              }}
               className="px-5 py-2.5 rounded-full text-sm font-bold bg-white dark:text-black text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-200 transition-colors shadow-sm"
               data-interactive
               data-testid="nav-cta"
@@ -170,14 +173,21 @@ export function Navigation({ isDark, onToggleTheme }: Props) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="mobile-nav-overlay fixed inset-0 z-30 backdrop-blur-xl flex flex-col items-center justify-center"
-            style={{ backgroundColor: isDark ? "rgba(5,5,5,0.97)" : "rgba(250,250,255,0.97)" }}
+            style={{
+              backgroundColor: isDark
+                ? "rgba(5,5,5,0.97)"
+                : "rgba(250,250,255,0.97)",
+            }}
           >
             <div className="flex flex-col items-center gap-8">
               {links.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={(e) => { e.preventDefault(); handleNavClick(link); }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link);
+                  }}
                   className="text-2xl font-bold dark:text-white text-gray-900 hover:text-primary transition-colors"
                   data-testid={`mobile-nav-link-${link.name.toLowerCase()}`}
                 >
