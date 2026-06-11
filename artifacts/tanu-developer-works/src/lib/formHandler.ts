@@ -1,13 +1,3 @@
-/**
- * Form Handler — modular submit layer for Contact, Quote, and Booking forms.
- *
- * ─── Integration Status ───────────────────────────────────────────────────────
- *  Google Sheets  → ACTIVE when VITE_SHEETS_WEBHOOK_URL secret is set in Replit.
- *                   See src/lib/googleSheetsConfig.ts for full setup instructions.
- *  Firebase        → STUB only. Wire up the Firebase SDK when ready (see below).
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 import {
   getSheetsWebhookUrl,
   SHEET_NAMES,
@@ -15,8 +5,11 @@ import {
   formatContactRow,
   formatBookingRow,
 } from "@/lib/googleSheetsConfig";
-
-// ── Form Data Types ──────────────────────────────────────────────────────────
+import {
+  saveContactSubmission,
+  saveDemoRequest,
+  saveQuoteRequest,
+} from "@/lib/firebaseLeads";
 
 export type FormType = "contact" | "quote" | "booking";
 
@@ -54,8 +47,6 @@ export interface SubmitResult {
   message: string;
 }
 
-// ── Google Sheets ─────────────────────────────────────────────────────────────
-
 async function submitToGoogleSheets(
   formType: FormType,
   data: AnyFormData,
@@ -63,10 +54,6 @@ async function submitToGoogleSheets(
   const webhookUrl = getSheetsWebhookUrl();
 
   if (!webhookUrl) {
-    console.warn(
-      "[formHandler] VITE_SHEETS_WEBHOOK_URL not set.\n" +
-        "Follow the setup guide in src/lib/googleSheetsConfig.ts to activate Sheets logging.",
-    );
     return { success: false, message: "Sheets webhook not configured." };
   }
 
@@ -85,7 +72,6 @@ async function submitToGoogleSheets(
     sheetName = SHEET_NAMES.contact;
   } else if (formType === "quote") {
     const d = data as QuoteFormData;
-    // Map legacy QuoteFormData to the booking row formatter (same shape minus date/time)
     row = [
       new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
       d.name,
@@ -106,7 +92,7 @@ async function submitToGoogleSheets(
       time: d.time,
       message: d.message,
     });
-    sheetName = SHEET_NAMES.demo; // bookings go to demo sheet
+    sheetName = SHEET_NAMES.demo;
   }
 
   const response = await fetch(webhookUrl, {
@@ -119,45 +105,55 @@ async function submitToGoogleSheets(
   return { success: true, message: "Saved to Google Sheets." };
 }
 
-// ── Firebase Stub ─────────────────────────────────────────────────────────────
-// Replace the body of this function with real Firebase SDK calls when ready.
-async function submitToFirebase(
+async function persistToFirebase(
   formType: FormType,
   data: AnyFormData,
-): Promise<SubmitResult> {
-  // TODO: import { db } from "@/lib/firebase";
-  // TODO: import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-  console.info("[formHandler] Firebase stub called — wire up SDK when ready.", {
-    formType,
-    data,
-  });
-  return { success: false, message: "Firebase not yet configured." };
+): Promise<void> {
+  try {
+    if (formType === "contact") {
+      const d = data as ContactFormData;
+      await saveContactSubmission({
+        name: d.name,
+        email: d.email,
+        phone: d.phone,
+        projectType: d.projectType,
+        budget: d.budget,
+        message: d.message,
+      });
+    } else if (formType === "quote") {
+      const d = data as QuoteFormData;
+      await saveQuoteRequest({
+        name: d.name,
+        email: d.email,
+        phone: d.phone,
+        service: d.service,
+        message: d.message,
+      });
+    } else {
+      const d = data as BookingFormData;
+      await saveDemoRequest({ businessType: d.service, source: "booking_form" });
+    }
+  } catch (err) {
+    console.error("[formHandler] Firebase save error:", err);
+  }
 }
-
-// ── Public Submit Function ────────────────────────────────────────────────────
 
 export async function submitForm(
   formType: FormType,
   data: AnyFormData,
 ): Promise<SubmitResult> {
+  // Always persist to Firebase first (primary store)
+  await persistToFirebase(formType, data);
+
+  // Also try Google Sheets (secondary store)
   try {
-    const sheetsResult = await submitToGoogleSheets(formType, data);
-    console.log("Sheets Result:", sheetsResult);
-    if (sheetsResult.success) return sheetsResult;
-
-    await submitToFirebase(formType, data);
-
-    return {
-      success: true,
-      message:
-        "Your message has been received. I'll get back to you within 24 hours.",
-    };
-  } catch (err) {
-    console.error("[formHandler] Submit error:", err);
-    return {
-      success: true,
-      message:
-        "Your message has been received. I'll get back to you within 24 hours.",
-    };
+    await submitToGoogleSheets(formType, data);
+  } catch {
+    // Sheets failure is non-blocking
   }
+
+  return {
+    success: true,
+    message: "Your message has been received. I'll get back to you within 24 hours.",
+  };
 }

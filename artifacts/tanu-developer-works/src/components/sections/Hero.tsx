@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Check, Smartphone, Zap, Search, MessageCircle, FileText, Map, Calendar, Monitor, LayoutDashboard, Headphones } from "lucide-react";
+import { ArrowRight, Check, Smartphone, Zap, Search, MessageCircle, FileText, Map, Calendar, Monitor, LayoutDashboard, Headphones, Phone } from "lucide-react";
 
 const features = [
   { icon: Smartphone, label: "Mobile Responsive Design" },
@@ -85,6 +85,18 @@ export function Hero() {
               Order a Website
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
+
+            <a
+              href={`https://wa.me/918433553501?text=${encodeURIComponent("Hi Tanu, I'd like to book a free call to discuss my project.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-full bg-green-500 hover:bg-green-600 text-white font-bold tracking-wide transition-all flex items-center gap-2 shadow-[0_4px_20px_rgba(34,197,94,0.3)]"
+              data-testid="button-book-call"
+              data-interactive
+            >
+              <Phone size={17} />
+              Book Free Call
+            </a>
 
             <button
               onClick={() => document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })}

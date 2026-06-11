@@ -3,6 +3,8 @@ import { Router, Route, Switch } from "wouter";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { CustomCursor } from "@/components/CustomCursor";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { SocialActivityWidget } from "@/components/SocialActivityWidget";
+import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
@@ -74,6 +76,8 @@ function App() {
         <Router>
           <CustomCursor />
           <FloatingWhatsApp />
+          <SocialActivityWidget />
+          <ExitIntentPopup />
           <Navigation isDark={isDark} onToggleTheme={toggle} />
           <Switch>
             <Route path="/" component={HomePage} />

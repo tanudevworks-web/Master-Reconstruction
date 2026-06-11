@@ -1,0 +1,85 @@
+Great. The website is now running.
+
+Now perform the following improvements:
+
+1. Firebase Integration
+
+* Install Firebase SDK.
+* Create src/lib/firebase.ts.
+* Configure Firebase using environment variables.
+* Create .env.example.
+* Connect all forms to Firestore:
+
+  * Contact Form
+  * Demo Request Form
+  * Any lead generation forms
+* Store:
+
+  * Name
+  * Email
+  * Phone
+  * Business Type
+  * Message
+  * Timestamp
+* Show success and error messages after submission.
+
+Firebase Config:
+
+apiKey=AIzaSyAjVhTzBth40YKWJSB0um_NIgAECeMgGAQ
+authDomain=tanu-devworks-leads.firebaseapp.com
+projectId=tanu-devworks-leads
+storageBucket=tanu-devworks-leads.firebasestorage.app
+messagingSenderId=698382843548
+appId=1:698382843548:web:a60d5a0deae587190c7759
+measurementId=G-TWDRVEQRSH
+
+2. Replace Empty Service Card
+   There is currently one empty card in the Why Choose Us section.
+
+Add a professional card such as:
+
+Lead Management Dashboard
+
+Every enquiry is stored securely so customer details are never lost. Track leads, contact requests and business enquiries efficiently.
+
+Use a matching icon, styling and animation identical to the existing cards.
+
+3. Improve Portfolio Showcase
+   Current portfolio cards look like placeholders.
+
+Replace them with realistic professional website mockups:
+
+* Dental Clinic Website
+* Restaurant Website
+* Business/Corporate Website
+* Portfolio Website
+* Gym/Fitness Website
+* Real Estate Website
+
+Create realistic desktop website previews inside the cards instead of generic placeholder blocks.
+
+Keep the same design language and animations.
+
+4. Firestore Structure
+
+Create collections:
+
+contact_submissions
+demo_requests
+lead_forms
+
+Store all submitted data properly with timestamps.
+
+5. Verification
+
+After completion:
+
+* Show all modified files.
+* Confirm Firebase connection.
+* Confirm Firestore collections.
+* Confirm form submissions are saved successfully.
+* Show build status.
+* Show preview URL.
+
+Do not redesign the website.
+Keep the existing UI exactly the same while improving functionality and realism.

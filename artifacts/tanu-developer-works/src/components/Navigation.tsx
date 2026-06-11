@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
 
@@ -114,6 +114,18 @@ export function Navigation({ isDark, onToggleTheme }: Props) {
                 </motion.span>
               </AnimatePresence>
             </button>
+
+            <a
+              href={`https://wa.me/918433553501?text=${encodeURIComponent("Hi Tanu, I'd like to book a free call to discuss my project.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-bold bg-green-500 hover:bg-green-600 text-white transition-colors shadow-sm"
+              data-interactive
+              data-testid="nav-book-call"
+            >
+              <Phone size={13} />
+              Book Free Call
+            </a>
 
             <a
               href="#contact"

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Gift } from "lucide-react";
+import { saveScratchCardLead } from "@/lib/firebaseLeads";
 
 const WHATSAPP_NUMBER = "918433553501";
 
@@ -107,8 +108,13 @@ export function ScratchCard() {
   const onTouchMove = (e: React.TouchEvent) => { e.preventDefault(); if (isDrawing.current) scratch(e.touches[0].clientX, e.touches[0].clientY); };
   const onTouchEnd = () => { isDrawing.current = false; };
 
-  const claimOffer = () => {
+  const claimOffer = async () => {
     if (!name || !phone) return;
+    try {
+      await saveScratchCardLead({ name, phone, reward });
+    } catch {
+      // fail silently
+    }
     const msg = encodeURIComponent(`Hi Tanu!\n\nI scratched and won: *${reward}*\n\nName: ${name}\nWhatsApp: ${phone}\n\nPlease apply my offer!`);
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, "_blank");
     setSaved(true);

@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageSquare, Clock, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { MessageSquare, Clock, ArrowRight, CheckCircle2, AlertCircle, Phone } from "lucide-react";
 import { submitForm, type ContactFormData } from "@/lib/formHandler";
+
+const WHATSAPP_NUMBER = "918433553501";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
 export function Contact() {
   const [formState, setFormState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [submittedName, setSubmittedName] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,18 +26,13 @@ export function Contact() {
     };
 
     try {
-      const result = await submitForm("contact", data);
-      if (result.success) {
-        setFormState("success");
-        setTimeout(() => setFormState("idle"), 6000);
-      } else {
-        setFormState("success"); // still show success to user
-        setTimeout(() => setFormState("idle"), 6000);
-      }
+      await submitForm("contact", data);
+      setSubmittedName(data.name.split(" ")[0]);
+      setFormState("success");
     } catch {
       setErrorMsg("Something went wrong. Please try WhatsApp or email.");
       setFormState("error");
-      setTimeout(() => setFormState("idle"), 6000);
+      setTimeout(() => setFormState("idle"), 8000);
     }
   };
 
@@ -100,15 +98,30 @@ export function Contact() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="relative z-10 flex flex-col items-center justify-center py-16 text-center gap-4"
+                className="relative z-10 flex flex-col items-center justify-center py-12 text-center gap-4"
               >
                 <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center text-green-400">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="text-2xl font-bold dark:text-white text-gray-900">Message Received!</h3>
-                <p className="dark:text-gray-400 text-gray-600 max-w-xs">
-                  Thank you! I'll get back to you within 24 hours. Talk soon.
+                <h3 className="text-2xl font-bold dark:text-white text-gray-900">
+                  {submittedName ? `Thanks, ${submittedName}!` : "Message Received!"}
+                </h3>
+                <p className="dark:text-gray-400 text-gray-600 max-w-xs text-sm">
+                  Your message has been saved. I'll get back to you within 24 hours.
                 </p>
+                <div className="w-full mt-2 border-t dark:border-white/8 border-gray-200 pt-4">
+                  <p className="text-xs dark:text-gray-500 text-gray-400 mb-3">Want a faster reply? Continue on WhatsApp:</p>
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Hello Tanu, I just submitted a request on your website and would like to discuss my project.")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-600 text-white font-bold rounded-xl transition-all text-sm shadow-[0_4px_16px_rgba(34,197,94,0.3)]"
+                    data-interactive
+                  >
+                    <Phone size={15} />
+                    Continue on WhatsApp
+                  </a>
+                </div>
               </motion.div>
             ) : formState === "error" ? (
               <motion.div

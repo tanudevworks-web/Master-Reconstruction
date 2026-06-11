@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Zap, MessageCircle, BarChart3, Smartphone, Globe, User, Clock } from "lucide-react";
+import { Zap, MessageCircle, BarChart3, Smartphone, Globe, User, Clock, Database } from "lucide-react";
 
 const values = [
   {
@@ -57,6 +57,14 @@ const values = [
     accent: "text-orange-500",
     bg: "dark:bg-orange-500/10 bg-orange-50",
     border: "dark:border-orange-500/20 border-orange-100",
+  },
+  {
+    icon: Database,
+    title: "Lead Management Dashboard",
+    desc: "Every enquiry is stored securely so customer details are never lost. Track leads, contact requests and business enquiries efficiently.",
+    accent: "text-indigo-500",
+    bg: "dark:bg-indigo-500/10 bg-indigo-50",
+    border: "dark:border-indigo-500/20 border-indigo-100",
   },
 ];
 
