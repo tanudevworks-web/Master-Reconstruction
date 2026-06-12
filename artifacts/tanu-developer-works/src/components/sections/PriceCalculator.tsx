@@ -99,10 +99,23 @@ export function PriceCalculator() {
       selectedAddons.size > 0
         ? ADDONS.filter((a) => selectedAddons.has(a.id))
             .map((a) => `• ${a.label} (+₹${a.price})`)
-            .join("%0A")
+            .join("\n")
         : "• No add-ons selected";
-    const msg = `Hi! I'd like to get a quote for my website.%0A%0A*Business Type:* ${selectedBusiness || "Not selected"}%0A%0A*Selected Features:*%0A${addonsText}%0A%0A*Estimated Price:* ₹${totalPrice.toLocaleString("en-IN")}%0A%0ACould you help me get started?`;
-    return `https://wa.me/yournumber?text=${msg}`;
+
+    const msg = `
+    Hi! I'd like to get a quote for my website.
+
+    Business Type: ${selectedBusiness || "Not selected"}
+
+    Selected Features:
+    ${addonsText}
+
+    Estimated Price: ₹${totalPrice}
+
+    Could you help me get started?
+    `;
+
+    return `https://wa.me/918433553501?text=${encodeURIComponent(msg)}`;
   };
 
   return (
