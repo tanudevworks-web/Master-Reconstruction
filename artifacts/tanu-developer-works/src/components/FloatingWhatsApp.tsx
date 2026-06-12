@@ -17,7 +17,7 @@ export function FloatingWhatsApp() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-        className="fixed bottom-6 right-6 z-[500] w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(34,197,94,0.45)] hover:shadow-[0_6px_32px_rgba(34,197,94,0.55)] transition-all"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(34,197,94,0.45)] hover:shadow-[0_6px_32px_rgba(34,197,94,0.55)] transition-all"
         data-interactive
         aria-label="Chat on WhatsApp"
       >
@@ -35,7 +35,7 @@ export function FloatingWhatsApp() {
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 40, opacity: 0 }}
         transition={{ delay: 2.5, type: "spring", stiffness: 180, damping: 20 }}
-        className="fixed bottom-6 right-6 z-[500] flex items-end gap-3"
+        className="fixed bottom-6 right-6 z-50 flex items-end gap-3"
       >
         {/* Tooltip card */}
         <motion.div

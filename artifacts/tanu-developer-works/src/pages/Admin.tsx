@@ -2,20 +2,19 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip,
-  ResponsiveContainer, CartesianGrid, Cell,
+  ResponsiveContainer, CartesianGrid, PieChart, Pie, Cell,
 } from "recharts";
 import { format, isAfter, startOfDay, startOfWeek, startOfMonth, subDays } from "date-fns";
 import {
-  LogOut, Download, Search, Filter, RefreshCw, Trash2,
-  Copy, MessageCircle, ChevronLeft, ChevronRight,
+  Lock, LogOut, Download, Search, Filter, RefreshCw, Trash2,
+  Copy, MessageCircle, ChevronLeft, ChevronRight, ExternalLink,
   Users, TrendingUp, Calendar, Star, Eye, X, Check, AlertTriangle,
-  Phone, Mail, Briefcase, ShieldAlert,
+  Phone, Mail, Briefcase,
 } from "lucide-react";
-import { signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, type User as FirebaseUser } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 import { fetchAllLeads, deleteLead, exportToCsv, type Lead } from "@/lib/adminFirebase";
 
-const ALLOWED_EMAIL = "tanudevworks@gmail.com";
+const ADMIN_PASSWORD = "tanu@admin2024";
+const SESSION_KEY = "tdw-admin-auth";
 const PER_PAGE = 15;
 
 const SOURCE_COLORS: Record<string, string> = {
@@ -43,116 +42,64 @@ function copyToClipboard(text: string, setCopied: (id: string) => void, id: stri
   });
 }
 
-/* ─── Google Sign-In ──────────────────────────────────────── */
-function AdminLogin() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+/* ─── Login Gate ──────────────────────────────────────────── */
+function AdminLogin({ onLogin }: { onLogin: () => void }) {
+  const [pw, setPw] = useState("");
+  const [error, setError] = useState(false);
+  const [shake, setShake] = useState(false);
 
-  const signIn = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-    } catch (e: unknown) {
-      const code = (e as { code?: string })?.code;
-      if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") {
-        setError(null);
-      } else if (code === "auth/configuration-not-found" || code === "auth/operation-not-allowed") {
-        setError("Google Sign-In is not yet enabled. Go to Firebase Console → Authentication → Sign-in method → Enable Google.");
-      } else {
-        setError("Sign-in failed. Please try again.");
-      }
-    } finally {
-      setLoading(false);
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (pw === ADMIN_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      onLogin();
+    } else {
+      setError(true);
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
     }
   };
 
   return (
     <div className="min-h-screen dark:bg-[#050505] bg-gray-50 flex items-center justify-center p-4">
       <motion.div
-        initial={{ opacity: 0, y: 20, scale: 0.96 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: "spring", stiffness: 200, damping: 22 }}
+        animate={shake ? { x: [-8, 8, -8, 8, 0] } : {}}
+        transition={{ duration: 0.4 }}
         className="w-full max-w-sm"
       >
         <div className="dark:bg-[#0d1117] bg-white rounded-3xl border dark:border-white/8 border-gray-200 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
           <div className="flex justify-center mb-6">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 via-violet-500 to-purple-600 flex items-center justify-center shadow-[0_0_30px_rgba(139,92,246,0.5)] relative">
-              <span className="text-2xl font-black text-white">T</span>
-              <span className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 dark:border-[#0d1117] border-white" />
+            <div className="w-14 h-14 rounded-2xl bg-gradient-aurora flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.4)]">
+              <Lock size={24} className="text-white" />
             </div>
           </div>
           <h1 className="text-xl font-bold text-center dark:text-white text-gray-900 mb-1">Admin Dashboard</h1>
-          <p className="text-sm text-center dark:text-gray-400 text-gray-500 mb-2">TanuDeveloper Works</p>
-          <p className="text-xs text-center dark:text-gray-600 text-gray-400 mb-7">
-            Access restricted to authorized accounts only
-          </p>
-
-          <button
-            onClick={signIn}
-            disabled={loading}
-            className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-xl border dark:border-white/10 border-gray-200 dark:bg-white/5 bg-white hover:dark:bg-white/8 hover:bg-gray-50 transition-all font-medium text-sm dark:text-white text-gray-800 disabled:opacity-60 shadow-sm"
-          >
-            {loading ? (
-              <RefreshCw size={16} className="animate-spin" />
-            ) : (
-              <svg width="18" height="18" viewBox="0 0 18 18">
-                <path fill="#4285F4" d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 002.38-5.88c0-.57-.05-.66-.15-1.18z"/>
-                <path fill="#34A853" d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 01-7.18-2.54H1.83v2.07A8 8 0 008.98 17z"/>
-                <path fill="#FBBC05" d="M4.5 10.52a4.8 4.8 0 010-3.04V5.41H1.83a8 8 0 000 7.18l2.67-2.07z"/>
-                <path fill="#EA4335" d="M8.98 4.18c1.17 0 2.23.4 3.06 1.2l2.3-2.3A8 8 0 001.83 5.4L4.5 7.49a4.77 4.77 0 014.48-3.31z"/>
-              </svg>
+          <p className="text-sm text-center dark:text-gray-500 text-gray-500 mb-6">TanuDeveloper Works</p>
+          <form onSubmit={submit} className="space-y-4">
+            <input
+              type="password"
+              value={pw}
+              onChange={(e) => { setPw(e.target.value); setError(false); }}
+              placeholder="Enter password"
+              autoFocus
+              className={`w-full px-4 py-3 rounded-xl border text-sm dark:bg-white/5 bg-gray-50 dark:text-white text-gray-900 focus:outline-none focus:ring-2 transition-all ${
+                error
+                  ? "border-red-500 focus:ring-red-500/30"
+                  : "dark:border-white/10 border-gray-200 focus:border-blue-500 focus:ring-blue-500/30"
+              }`}
+            />
+            {error && (
+              <p className="text-xs text-red-400 flex items-center gap-1">
+                <AlertTriangle size={12} /> Incorrect password
+              </p>
             )}
-            {loading ? "Signing in…" : "Continue with Google"}
-          </button>
-
-          {error && (
-            <div className="mt-4 p-3 rounded-xl bg-red-500/10 border border-red-500/20">
-              <p className="text-xs text-red-400 leading-relaxed">{error}</p>
-            </div>
-          )}
-
-          <p className="text-[11px] text-center dark:text-gray-600 text-gray-400 mt-5">
-            Only <span className="font-mono dark:text-gray-400 text-gray-600">{ALLOWED_EMAIL}</span> can access this dashboard
-          </p>
-        </div>
-      </motion.div>
-    </div>
-  );
-}
-
-/* ─── Access Denied ───────────────────────────────────────── */
-function AccessDenied({ email, onLogout }: { email: string | null; onLogout: () => void }) {
-  return (
-    <div className="min-h-screen dark:bg-[#050505] bg-gray-50 flex items-center justify-center p-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-sm text-center"
-      >
-        <div className="dark:bg-[#0d1117] bg-white rounded-3xl border dark:border-red-500/20 border-red-200 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
-          <div className="flex justify-center mb-5">
-            <div className="w-16 h-16 rounded-2xl bg-red-500/10 border border-red-500/20 flex items-center justify-center">
-              <ShieldAlert size={28} className="text-red-400" />
-            </div>
-          </div>
-          <h1 className="text-xl font-bold dark:text-white text-gray-900 mb-2">Access Denied</h1>
-          <p className="text-sm dark:text-gray-400 text-gray-500 mb-1">
-            Your account is not authorized to access this dashboard.
-          </p>
-          {email && (
-            <p className="text-xs font-mono dark:text-gray-600 text-gray-400 mb-6 truncate">{email}</p>
-          )}
-          <p className="text-xs dark:text-gray-500 text-gray-400 mb-6">
-            Only <span className="font-mono dark:text-gray-300 text-gray-600">{ALLOWED_EMAIL}</span> is permitted.
-          </p>
-          <button
-            onClick={onLogout}
-            className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 text-sm font-medium transition-all"
-          >
-            <LogOut size={14} /> Sign Out
-          </button>
+            <button
+              type="submit"
+              className="w-full py-3 rounded-xl bg-gradient-aurora text-white font-bold text-sm hover:shadow-[0_0_20px_rgba(59,130,246,0.4)] transition-all"
+            >
+              Sign In
+            </button>
+          </form>
         </div>
       </motion.div>
     </div>
@@ -741,31 +688,13 @@ function AdminDashboard({ onLogout }: { onLogout: () => void }) {
 
 /* ─── Entry ───────────────────────────────────────────────── */
 export function Admin() {
-  const [user, setUser] = useState<FirebaseUser | null>(null);
-  const [authLoading, setAuthLoading] = useState(true);
+  const [authed, setAuthed] = useState(() => sessionStorage.getItem(SESSION_KEY) === "1");
 
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      setAuthLoading(false);
-    });
-    return unsub;
-  }, []);
-
-  const logout = async () => {
-    await signOut(auth);
-    setUser(null);
+  const logout = () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    setAuthed(false);
   };
 
-  if (authLoading) {
-    return (
-      <div className="min-h-screen dark:bg-[#050505] bg-gray-50 flex items-center justify-center">
-        <RefreshCw size={24} className="animate-spin dark:text-gray-600 text-gray-300" />
-      </div>
-    );
-  }
-
-  if (!user) return <AdminLogin />;
-  if (user.email !== ALLOWED_EMAIL) return <AccessDenied email={user.email} onLogout={logout} />;
+  if (!authed) return <AdminLogin onLogin={() => setAuthed(true)} />;
   return <AdminDashboard onLogout={logout} />;
 }
