@@ -101,3 +101,14 @@ export function saveScratchCardLead(data: ScratchLead) {
 export function saveDiscountLead(data: DiscountLead) {
   return write("discount_leads", { ...data, source: "exit_intent_popup" });
 }
+
+export interface ChatLead {
+  name: string;
+  email?: string;
+  phone?: string;
+  projectType?: string;
+}
+
+export function saveChatLead(data: ChatLead) {
+  return write("chat_leads", { ...data, source: "ai_chatbot" });
+}
