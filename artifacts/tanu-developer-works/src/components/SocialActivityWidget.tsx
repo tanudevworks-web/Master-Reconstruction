@@ -34,7 +34,7 @@ export function SocialActivityWidget() {
   const notif = NOTIFICATIONS[current];
 
   return (
-    <div className="fixed bottom-6 left-6 z-40 max-w-[260px]">
+    <div className="fixed bottom-6 left-6 z-[100] max-w-[260px]">
       <AnimatePresence mode="wait">
         {visible && (
           <motion.div
