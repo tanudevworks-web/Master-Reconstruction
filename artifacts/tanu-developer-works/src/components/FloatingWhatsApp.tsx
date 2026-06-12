@@ -42,7 +42,7 @@ export function FloatingWhatsApp() {
           initial={{ scale: 0.9, opacity: 0, x: 20 }}
           animate={{ scale: 1, opacity: 1, x: 0 }}
           transition={{ delay: 3, duration: 0.3 }}
-          className="dark:bg-gray-900 bg-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border dark:border-white/10 border-gray-200 p-4 max-w-[220px] relative ml-[22px] mr-[22px] mt-[22px] mb-[22px]"
+          className="dark:bg-gray-900 bg-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border dark:border-white/10 border-gray-200 p-4 max-w-[220px] relative ml-[0px] mr-[0px] mt-[0px] mb-[0px]"
         >
           {/* Close */}
           <button
