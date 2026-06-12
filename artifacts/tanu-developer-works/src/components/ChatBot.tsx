@@ -2,13 +2,13 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Trash2, Bot, RotateCcw } from "lucide-react";
 import { detectIntent, getResponse, WELCOME_MESSAGE } from "@/lib/chatKnowledge";
-import { saveChatLead, type ChatLead } from "@/lib/firebaseLeads";
+import { saveAiChatLead, type AiChatLead } from "@/lib/firebaseLeads";
 
 const STORAGE_KEY = "tdw-chat-history";
 const WHATSAPP = "https://wa.me/918433553501";
 
 type Role = "user" | "bot";
-type LeadStep = "name" | "email" | "phone" | "projectType" | null;
+type LeadStep = "name" | "email" | "phone" | "businessType" | null;
 
 interface Msg {
   id: string;
@@ -137,7 +137,7 @@ export function ChatBot() {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [leadStep, setLeadStep] = useState<LeadStep>(null);
-  const [leadData, setLeadData] = useState<Partial<ChatLead>>({});
+  const [leadData, setLeadData] = useState<Partial<AiChatLead>>({});
   const [hasUnread, setHasUnread] = useState(true);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -226,17 +226,17 @@ export function ChatBot() {
           addBotMsg("Great! What's your WhatsApp / phone number?");
         } else if (leadStep === "phone") {
           setLeadData((d) => ({ ...d, phone: trimmed }));
-          setLeadStep("projectType");
+          setLeadStep("businessType");
           addBotMsg(
             "Almost done! What type of website are you looking for?",
             ["Portfolio", "Business Website", "Restaurant", "Clinic", "E-Commerce", "Landing Page", "Custom"],
           );
-        } else if (leadStep === "projectType") {
-          const finalData: ChatLead = { ...leadData, projectType: trimmed, name: leadData.name ?? "Unknown" };
+        } else if (leadStep === "businessType") {
+          const finalData: AiChatLead = { ...leadData, businessType: trimmed, name: leadData.name ?? "Unknown" };
           setLeadData(finalData);
           setLeadStep(null);
           try {
-            await saveChatLead(finalData);
+            await saveAiChatLead(finalData);
           } catch {
             /* fail silently */
           }
@@ -303,7 +303,7 @@ export function ChatBot() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold dark:text-white text-gray-900 leading-none mb-0.5">
-                  TDW Assistant
+                  Tanu AI
                 </p>
                 <p className="text-[11px] dark:text-gray-400 text-gray-500 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
