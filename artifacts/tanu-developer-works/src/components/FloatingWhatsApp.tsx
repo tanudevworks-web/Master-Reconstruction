@@ -59,7 +59,9 @@ export function FloatingWhatsApp() {
               <MessageCircle size={16} className="text-white" fill="white" />
             </div>
             <div>
-              <p className="font-bold text-xs dark:text-white text-gray-900">Tanu Tapase</p>
+              <p className="font-bold text-xs dark:text-white text-gray-900">
+                Tanu Tapase
+              </p>
               <p className="text-[10px] dark:text-gray-400 text-gray-500 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
                 Online now
