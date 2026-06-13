@@ -17,7 +17,7 @@ export function FloatingWhatsApp() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(34,197,94,0.45)] hover:shadow-[0_6px_32px_rgba(34,197,94,0.55)] transition-all"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(34,197,94,0.45)] hover:shadow-[0_6px_32px_rgba(34,197,94,0.55)] transition-all ml-[10px] mr-[0px] pt-[0px] pb-[0px] mt-[0px] mb-[0px]"
         data-interactive
         aria-label="Chat on WhatsApp"
       >
