@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Router, Route, Switch } from "wouter";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { CustomCursor } from "@/components/CustomCursor";
+import { CosmicCanvas } from "@/components/cosmic/CosmicCanvas";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { ChatBot } from "@/components/ChatBot";
 import { SocialActivityWidget } from "@/components/SocialActivityWidget";
@@ -84,25 +85,31 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-blue-500/30 font-sans transition-colors duration-300">
-      {loading ? (
-        <LoadingScreen onComplete={() => setLoading(false)} />
-      ) : (
-        <Router>
-          <CustomCursor />
-          <FloatingWhatsApp />
-          <ChatBot />
-          <SocialActivityWidget />
-          <ExitIntentPopup />
-          <Navigation isDark={isDark} onToggleTheme={toggle} />
-          <Switch>
-            <Route path="/" component={HomePage} />
-            <Route path="/projects" component={Projects} />
-          </Switch>
-          <Footer />
-        </Router>
-      )}
-    </div>
+    <>
+      <CosmicCanvas />
+      <div
+        className="min-h-screen text-foreground selection:bg-blue-500/30 font-sans transition-colors duration-300"
+        style={{ position: "relative", zIndex: 1 }}
+      >
+        {loading ? (
+          <LoadingScreen onComplete={() => setLoading(false)} />
+        ) : (
+          <Router>
+            <CustomCursor />
+            <FloatingWhatsApp />
+            <ChatBot />
+            <SocialActivityWidget />
+            <ExitIntentPopup />
+            <Navigation isDark={isDark} onToggleTheme={toggle} />
+            <Switch>
+              <Route path="/" component={HomePage} />
+              <Route path="/projects" component={Projects} />
+            </Switch>
+            <Footer />
+          </Router>
+        )}
+      </div>
+    </>
   );
 }
 

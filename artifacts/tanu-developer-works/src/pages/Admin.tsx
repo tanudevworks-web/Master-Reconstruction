@@ -108,7 +108,7 @@ function AdminLogin({ onLogin }: { onLogin: () => void }) {
 
 /* ─── Stats Card ──────────────────────────────────────────── */
 function StatCard({ label, value, icon: Icon, color }: {
-  label: string; value: number; icon: React.ElementType; color: string;
+  label: string; value: number; icon: React.FC<{ size?: number; style?: React.CSSProperties }>; color: string;
 }) {
   return (
     <motion.div

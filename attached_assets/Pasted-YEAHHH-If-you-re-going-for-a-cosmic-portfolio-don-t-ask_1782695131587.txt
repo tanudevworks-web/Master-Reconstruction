@@ -1,0 +1,522 @@
+YEAHHH 😭🔥. If you're going for a **cosmic portfolio**, don't ask Replit to "make it 3D." Ask it to build an **interactive cinematic universe**. Here's a mega prompt you can paste directly.
+
+---
+
+# 🌌 MEGA PROMPT — THE COSMIC UNIVERSE PORTFOLIO
+
+You are an award-winning creative developer and senior WebGL engineer. Your mission is to transform my existing portfolio into one of the most visually stunning websites on the internet.
+
+This is NOT a normal portfolio.
+
+It is an interactive universe.
+
+Visitors should feel like they are entering another dimension.
+
+The first reaction should be:
+
+> "How is this even running in a browser?"
+
+The website should feel comparable to Awwwards winners, Apple Vision Pro experiences, and high-end Three.js/WebGL showcases.
+
+---
+
+# CORE VISION
+
+The website is an endless cosmic universe where the user travels through space.
+
+Every section is a destination.
+
+Scrolling should feel like flying through galaxies.
+
+Nothing should feel flat.
+
+Everything should feel alive.
+
+---
+
+# TECHNOLOGY
+
+Use the best technologies available.
+
+* Three.js
+* React Three Fiber
+* Drei
+* GSAP
+* Framer Motion
+* Post Processing
+* React Spring
+* GLSL Shaders
+* GPU Particles
+* Bloom
+* Depth Of Field
+* Motion Blur
+* Volumetric Lighting
+* Ambient Occlusion
+
+Performance must stay smooth.
+
+Target 60 FPS.
+
+---
+
+# BACKGROUND
+
+Instead of a background...
+
+Create an entire universe.
+
+Include:
+
+Billions of stars
+
+Nebulas
+
+Moving galaxies
+
+Colorful space dust
+
+Tiny planets
+
+Asteroids
+
+Meteor showers
+
+Comets
+
+Auroras
+
+Black holes
+
+Energy clouds
+
+Animated constellations
+
+Floating light particles
+
+Occasional shooting stars
+
+Everything slowly moving forever.
+
+Nothing should be static.
+
+---
+
+# HERO SECTION
+
+The hero should immediately amaze visitors.
+
+In the center...
+
+Create a massive glowing celestial object.
+
+Ideas:
+
+A rotating crystal
+
+A miniature universe
+
+A Dyson Sphere
+
+A glowing energy core
+
+A black hole surrounded by light rings
+
+A planet with floating debris
+
+A magical AI orb
+
+The object should rotate slowly.
+
+React to mouse movement.
+
+Emit glowing particles.
+
+Cast light into the scene.
+
+---
+
+# CAMERA
+
+The camera is alive.
+
+It slowly floats.
+
+It breathes.
+
+Mouse movement gently moves the camera.
+
+Scrolling moves the camera through space.
+
+Each section has its own cinematic camera animation.
+
+Smooth transitions only.
+
+No sudden movement.
+
+---
+
+# INTERACTIVE OBJECTS
+
+Place floating objects everywhere.
+
+Examples:
+
+Ancient space ruins
+
+Alien cubes
+
+Energy crystals
+
+Floating rings
+
+Broken satellites
+
+Mini moons
+
+Holographic panels
+
+Tiny galaxies inside glass spheres
+
+Astronaut helmets
+
+Floating books
+
+Glowing DNA structures
+
+Tech artifacts
+
+Every object rotates slowly.
+
+Every object has subtle floating motion.
+
+Hovering makes them react.
+
+---
+
+# PARTICLES
+
+The website should have thousands of particles.
+
+Different types:
+
+Dust
+
+Magic particles
+
+Stars
+
+Energy sparks
+
+Nebula particles
+
+Fireflies
+
+Galaxy particles
+
+Floating light
+
+Everything should move naturally.
+
+---
+
+# SECTION TRANSITIONS
+
+Never simply scroll.
+
+Instead...
+
+Camera flies.
+
+Stars move.
+
+Background changes.
+
+Nebula colors shift.
+
+Particles increase.
+
+Lighting changes.
+
+The user feels like they reached another part of space.
+
+---
+
+# ABOUT SECTION
+
+Instead of a normal card...
+
+Build a floating space station.
+
+Information appears as holograms.
+
+Rotating rings surround it.
+
+Small drones fly nearby.
+
+Blue holographic animations.
+
+Glass panels.
+
+Soft glow.
+
+---
+
+# SKILLS
+
+Represent skills as planets.
+
+Example:
+
+JavaScript planet
+
+React planet
+
+Node planet
+
+Firebase moon
+
+ThreeJS asteroid
+
+Each planet rotates.
+
+Hover reveals information.
+
+Planets orbit around the center.
+
+Connections between planets glow.
+
+---
+
+# PROJECTS
+
+Projects become giant floating holographic cubes.
+
+Hover:
+
+Cube expands
+
+Glows
+
+Rotates
+
+Shows preview
+
+Displays animated border
+
+Click:
+
+Camera flies toward cube
+
+Project opens with transition
+
+---
+
+# EXPERIENCE
+
+Create a timeline floating through space.
+
+Each milestone is a planet.
+
+Connected with glowing energy beams.
+
+The camera flies from one planet to another.
+
+---
+
+# CONTACT
+
+Instead of a form...
+
+Create a futuristic command center.
+
+Glass UI.
+
+Floating holograms.
+
+Animated controls.
+
+Typing creates holographic effects.
+
+Buttons emit energy waves.
+
+Sending message launches particles into space.
+
+---
+
+# CUSTOM CURSOR
+
+Replace normal cursor.
+
+Create an energy orb.
+
+Cursor leaves glowing trail.
+
+Magnetic effect.
+
+Objects react when nearby.
+
+Clicks create expanding energy waves.
+
+---
+
+# SCROLL EXPERIENCE
+
+Scrolling should feel like:
+
+Flying through galaxies.
+
+Passing planets.
+
+Avoiding asteroids.
+
+Entering wormholes.
+
+Crossing nebulas.
+
+Every section is a new world.
+
+---
+
+# LIGHTING
+
+Use cinematic lighting.
+
+God Rays
+
+Bloom
+
+Dynamic lights
+
+Soft shadows
+
+Volumetric fog
+
+Ambient glow
+
+Color changes based on section.
+
+---
+
+# GLASSMORPHISM
+
+Use premium glass everywhere.
+
+Blur
+
+Transparency
+
+Refraction
+
+Glow
+
+Reflection
+
+Depth
+
+Rounded corners
+
+Animated borders
+
+---
+
+# MICRO ANIMATIONS
+
+Everything moves.
+
+Cards breathe.
+
+Buttons pulse.
+
+Icons rotate.
+
+Text glows.
+
+Stars twinkle.
+
+Particles drift.
+
+Nothing should ever feel static.
+
+---
+
+# SECRET DETAILS
+
+Hide easter eggs.
+
+Clicking certain stars creates constellations.
+
+Typing "universe" activates hyperspace.
+
+Konami code launches spaceship.
+
+Random shooting stars.
+
+Hidden planets.
+
+Tiny astronaut floating across the screen.
+
+---
+
+# SOUND (OPTIONAL)
+
+Very subtle ambient sounds.
+
+Deep space hum.
+
+Soft wind.
+
+Tiny chimes.
+
+Hover sounds.
+
+Button sounds.
+
+Mute option included.
+
+---
+
+# MOBILE
+
+Not a reduced version.
+
+Create a dedicated mobile experience.
+
+Reduce particles intelligently.
+
+Keep smooth performance.
+
+Maintain premium feel.
+
+---
+
+# PERFORMANCE
+
+Lazy load assets.
+
+Optimize shaders.
+
+Compress textures.
+
+LOD for distant objects.
+
+GPU instancing.
+
+Frustum culling.
+
+Adaptive quality.
+
+Maintain smooth FPS.
+
+---
+
+# FINAL GOAL
+
+Do not build a website.
+
+Build an unforgettable experience.
+
+Every visitor should spend several minutes simply exploring.
+
+The portfolio should feel like traveling through a living universe, where every scroll reveals a new cosmic scene, every interaction feels magical, and every detail reflects craftsmanship worthy of an Awwwards-winning WebGL experience.
+
+**One extra idea that would make this unforgettable:** make the user's journey start on a tiny floating planet. As they scroll, the camera leaves that planet, flies through a wormhole, passes asteroid belts, enters colorful nebulas, visits orbiting project planets, and finally reaches a massive glowing galaxy at the contact section—making the entire portfolio feel like one continuous voyage through space rather than separate pages. 🚀🌌
