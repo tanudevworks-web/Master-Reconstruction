@@ -1,0 +1,270 @@
+🚀 COMPLETE REDESIGN PROMPT – PREMIUM 3D COSMIC PORTFOLIO
+
+I am not happy with the current version.
+
+Do NOT keep improving the existing UI.
+
+I want you to completely redesign the website from scratch while preserving only the content and functionality.
+
+The current website feels too purple, too cluttered, and the animations feel heavy and laggy.
+
+I do NOT want a website that simply has lots of glowing effects.
+
+I want a clean, premium, modern, cinematic 3D experience.
+
+Think like an Awwwards-winning creative developer.
+
+🎨 DESIGN DIRECTION
+
+The design should feel like:
+
+Apple Vision Pro
+Nothing Design
+Linear
+SpaceX
+NASA
+Modern luxury interfaces
+
+NOT a gaming website.
+
+NOT an RGB website.
+
+NOT an overloaded cyberpunk website.
+
+The website should feel expensive.
+
+Elegant.
+
+Minimal.
+
+Beautiful.
+
+Premium.
+
+🌌 COLOR PALETTE
+
+Reduce purple by 90%.
+
+Use mostly:
+
+Deep Space Black (#050505)
+Midnight Blue
+Dark Navy
+Soft White
+Glass Frost
+Silver
+Tiny accents of Blue/Cyan
+Very subtle Purple only where necessary
+
+The website should feel dark and cinematic instead of bright and neon.
+
+🚀 3D EXPERIENCE
+
+I want REAL 3D.
+
+Not fake CSS transforms.
+
+Use Three.js / React Three Fiber.
+
+Include:
+
+Floating planets
+Rotating moons
+Asteroid belts
+Small satellites
+Space stations
+Nebula clouds
+Cosmic dust
+Shooting stars
+Comets
+Tiny astronauts
+Energy crystals
+Floating holograms
+
+Everything should move naturally.
+
+Nothing should stay static.
+
+🎥 CAMERA
+
+The camera should slowly float.
+
+Mouse movement slightly changes perspective.
+
+Scrolling moves the camera through space.
+
+Transitions must be buttery smooth.
+
+🪐 HERO
+
+The hero section should contain ONE breathtaking centerpiece.
+
+Ideas:
+
+A realistic rotating planet
+
+A Dyson Sphere
+
+A glowing crystal
+
+A black hole
+
+A miniature galaxy
+
+An energy core
+
+A holographic AI sphere
+
+This object should react to the cursor.
+
+UI
+
+Completely redesign every section.
+
+No old layout.
+
+No old cards.
+
+No old spacing.
+
+No old typography.
+
+Everything should look modern and clean.
+
+Use beautiful white typography with lots of breathing room.
+
+Large headings.
+
+Minimal text.
+
+Glassmorphism only where necessary.
+
+PROJECTS
+
+Instead of boring cards:
+
+Create floating holographic project cubes.
+
+Hover:
+
+Rotate
+
+Glow
+
+Expand
+
+Reveal project
+
+Click:
+
+Camera zooms into project.
+
+ABOUT
+
+Instead of a normal card...
+
+Create a floating futuristic command center.
+
+Information appears as holographic panels.
+
+SKILLS
+
+Skills should orbit around a planet.
+
+Every technology becomes a floating object.
+
+Connections animate.
+
+Hover reveals details.
+
+CONTACT
+
+Create a futuristic communication terminal.
+
+Glass UI.
+
+Animated holograms.
+
+Minimal.
+
+Elegant.
+
+PERFORMANCE (MOST IMPORTANT)
+
+The website MUST NOT lag.
+
+Optimize everything.
+
+Use InstancedMesh where possible.
+Lazy load heavy assets.
+Compress textures.
+Optimize shaders.
+Use Level Of Detail (LOD).
+Frustum culling.
+Adaptive quality.
+Avoid unnecessary post-processing.
+Minimize draw calls.
+Target 60 FPS on mid-range laptops and phones.
+Never sacrifice performance just to add more effects.
+
+Smoothness is more important than adding extra objects.
+
+ANIMATIONS
+
+Animations should feel premium.
+
+No flashy animations.
+
+No random bouncing.
+
+No exaggerated effects.
+
+Everything should be:
+
+Slow.
+
+Smooth.
+
+Elegant.
+
+Natural.
+
+Cinematic.
+
+MICRO DETAILS
+
+Buttons have magnetic hover.
+
+Cards gently float.
+
+Cursor becomes an energy orb.
+
+Particles react to movement.
+
+Glass panels reflect light.
+
+Planets slowly rotate.
+
+Stars twinkle.
+
+Nebulas move.
+
+Lighting changes as the user scrolls.
+
+FINAL GOAL
+
+Do not build a portfolio.
+
+Build an unforgettable interactive journey through space.
+
+Every scroll should feel like travelling through the universe.
+
+Every section should feel like discovering a new celestial destination.
+
+Visitors should immediately think:
+
+"This is one of the most beautiful websites I have ever seen."
+
+Do not copy templates.
+
+Create an original, world-class experience with clean UI, premium 3D, and exceptional performance. The website must feel luxurious, futuristic, responsive, and incredibly smooth—not overloaded with effects or excessive purple. Prioritize quality over quantity in every design and animation decision.

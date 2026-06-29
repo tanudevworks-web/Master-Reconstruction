@@ -1,78 +1,64 @@
 import { useEffect, useRef } from "react";
 
-/**
- * RAF-based custom cursor — no Framer Motion, no re-renders.
- * Dot: instant. Ring: smooth lerp at 0.12.
- * Hidden automatically on touch devices.
- */
 export function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
+  const dotRef  = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(hover: none)").matches) return;
-
-    const dot = dotRef.current;
+    const dot  = dotRef.current;
     const ring = ringRef.current;
     if (!dot || !ring) return;
 
-    let mouseX = -200;
-    let mouseY = -200;
-    let ringX = -200;
-    let ringY = -200;
-    let isHovering = false;
-    let rafId = 0;
+    let rx = 0, ry = 0, mx = 0, my = 0, raf = 0;
 
-    const onMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+    const move = (e: MouseEvent) => { mx = e.clientX; my = e.clientY; };
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const tick = () => {
+      rx = lerp(rx, mx, 0.12);
+      ry = lerp(ry, my, 0.12);
+      dot.style.transform  = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+      raf = requestAnimationFrame(tick);
     };
 
-    const onMouseOver = (e: MouseEvent) => {
-      isHovering = !!(e.target as HTMLElement).closest("a, button, [data-interactive]");
-    };
+    const show = () => { dot.style.opacity = "1"; ring.style.opacity = "1"; };
+    const hide = () => { dot.style.opacity = "0"; ring.style.opacity = "0"; };
+    const onDown = () => { ring.style.width = "28px"; ring.style.height = "28px"; };
+    const onUp   = () => { ring.style.width = "38px"; ring.style.height = "38px"; };
 
-    const loop = () => {
-      dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px) scale(${isHovering ? 0 : 1})`;
-
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-
-      const size = isHovering ? 40 : 28;
-      ring.style.transform = `translate(${ringX - size / 2}px, ${ringY - size / 2}px)`;
-      ring.style.width = `${size}px`;
-      ring.style.height = `${size}px`;
-      ring.style.borderColor = isHovering ? "rgba(59,130,246,0.6)" : "rgba(100,116,139,0.5)";
-
-      rafId = requestAnimationFrame(loop);
-    };
-
-    rafId = requestAnimationFrame(loop);
-    window.addEventListener("mousemove", onMouseMove, { passive: true });
-    window.addEventListener("mouseover", onMouseOver, { passive: true });
+    window.addEventListener("mousemove",   move);
+    document.addEventListener("mouseenter", show);
+    document.addEventListener("mouseleave", hide);
+    window.addEventListener("mousedown",   onDown);
+    window.addEventListener("mouseup",     onUp);
+    raf = requestAnimationFrame(tick);
 
     return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseover", onMouseOver);
+      window.removeEventListener("mousemove",   move);
+      document.removeEventListener("mouseenter", show);
+      document.removeEventListener("mouseleave", hide);
+      window.removeEventListener("mousedown",   onDown);
+      window.removeEventListener("mouseup",     onUp);
+      cancelAnimationFrame(raf);
     };
   }, []);
 
   return (
     <>
-      {/* Dot — no mix-blend-difference: adapts to both themes */}
-      <div
-        ref={dotRef}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] will-change-transform dark:bg-white bg-gray-700"
-        style={{ transition: "transform 0.04s linear" }}
-        data-testid="cursor-dot"
-      />
-      <div
-        ref={ringRef}
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border will-change-transform"
-        style={{ transition: "border-color 0.2s, width 0.15s, height 0.15s" }}
-        data-testid="cursor-ring"
-      />
+      <div ref={dotRef} style={{
+        position:"fixed",top:0,left:0,zIndex:9999,
+        width:"5px",height:"5px",borderRadius:"50%",
+        background:"#60a5fa",pointerEvents:"none",
+        willChange:"transform",transition:"opacity 0.2s",
+      }}/>
+      <div ref={ringRef} style={{
+        position:"fixed",top:0,left:0,zIndex:9998,
+        width:"38px",height:"38px",borderRadius:"50%",
+        border:"1px solid rgba(96,165,250,0.28)",
+        pointerEvents:"none",willChange:"transform",
+        transition:"width 0.2s,height 0.2s,opacity 0.2s",
+      }}/>
     </>
   );
 }

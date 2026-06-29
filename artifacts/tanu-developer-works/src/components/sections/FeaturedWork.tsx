@@ -7,157 +7,129 @@ const projects = [
   {
     title: "SmileDental Clinic",
     category: "Dental Healthcare",
-    color: "from-teal-500/20 to-cyan-900/20",
-    hoverColor: "group-hover:border-teal-500/50",
-    accentColor: "#0d9488",
+    gradient: "linear-gradient(135deg, rgba(20,184,166,0.15), rgba(6,182,212,0.06))",
+    border: "rgba(20,184,166,0.2)",
+    accent: "#0d9488",
     mockup: {
       nav: ["Home", "Services", "Doctors", "Book Now"],
-      hero: { headline: "Trusted Dental Care", sub: "Advanced dentistry for the whole family", cta: "Book Appointment" },
-      stat1: { label: "Happy Patients", value: "2,400+" },
-      stat2: { label: "Years Experience", value: "12+" },
-      cards: [
-        { icon: "🦷", label: "Teeth Cleaning" },
-        { icon: "✨", label: "Whitening" },
-        { icon: "🔬", label: "X-Ray & Scan" },
-      ],
+      hero: { headline: "Trusted Dental Care", cta: "Book Appointment" },
+      stats: [{ label: "Happy Patients", value: "2,400+" }, { label: "Years", value: "12+" }],
+      cards: [{ icon: "🦷", label: "Cleaning" }, { icon: "✨", label: "Whitening" }, { icon: "🔬", label: "X-Ray" }],
     },
   },
   {
     title: "Spice Garden Restaurant",
     category: "Premium Dining",
-    color: "from-orange-500/20 to-red-900/20",
-    hoverColor: "group-hover:border-orange-500/50",
-    accentColor: "#ea580c",
+    gradient: "linear-gradient(135deg, rgba(249,115,22,0.14), rgba(239,68,68,0.06))",
+    border: "rgba(249,115,22,0.2)",
+    accent: "#ea580c",
     mockup: {
       nav: ["Menu", "Reserve", "Gallery", "Contact"],
-      hero: { headline: "Authentic Indian Cuisine", sub: "Family recipes passed down since 1985", cta: "Reserve Table" },
-      stat1: { label: "Menu Items", value: "80+" },
-      stat2: { label: "Avg Rating", value: "4.9 ★" },
-      cards: [
-        { icon: "🍛", label: "Biryani" },
-        { icon: "🔥", label: "Tandoor" },
-        { icon: "🍮", label: "Desserts" },
-      ],
+      hero: { headline: "Authentic Indian Cuisine", cta: "Reserve Table" },
+      stats: [{ label: "Menu Items", value: "80+" }, { label: "Rating", value: "4.9★" }],
+      cards: [{ icon: "🍛", label: "Biryani" }, { icon: "🔥", label: "Tandoor" }, { icon: "🍮", label: "Desserts" }],
     },
   },
   {
     title: "NexGen Corporate",
     category: "Business Website",
-    color: "from-blue-500/20 to-indigo-900/20",
-    hoverColor: "group-hover:border-blue-500/50",
-    accentColor: "#2563eb",
+    gradient: "linear-gradient(135deg, rgba(59,130,246,0.14), rgba(99,102,241,0.06))",
+    border: "rgba(59,130,246,0.2)",
+    accent: "#2563eb",
     mockup: {
       nav: ["About", "Services", "Portfolio", "Contact"],
-      hero: { headline: "Grow Your Business", sub: "Enterprise solutions for modern companies", cta: "Get Started" },
-      stat1: { label: "Clients Served", value: "500+" },
-      stat2: { label: "Projects Done", value: "1,200+" },
-      cards: [
-        { icon: "📊", label: "Analytics" },
-        { icon: "🔒", label: "Security" },
-        { icon: "☁️", label: "Cloud" },
-      ],
+      hero: { headline: "Grow Your Business", cta: "Get Started" },
+      stats: [{ label: "Clients", value: "500+" }, { label: "Projects", value: "1,200+" }],
+      cards: [{ icon: "📊", label: "Analytics" }, { icon: "🔒", label: "Security" }, { icon: "☁️", label: "Cloud" }],
     },
   },
   {
     title: "Alex Rivera Portfolio",
     category: "Creative Portfolio",
-    color: "from-purple-500/20 to-pink-900/20",
-    hoverColor: "group-hover:border-purple-500/50",
-    accentColor: "#9333ea",
+    gradient: "linear-gradient(135deg, rgba(168,85,247,0.12), rgba(236,72,153,0.06))",
+    border: "rgba(168,85,247,0.18)",
+    accent: "#9333ea",
     mockup: {
       nav: ["Work", "About", "Skills", "Hire Me"],
-      hero: { headline: "UI/UX Designer", sub: "Crafting beautiful digital experiences", cta: "View Work" },
-      stat1: { label: "Projects", value: "45+" },
-      stat2: { label: "Clients", value: "30+" },
-      cards: [
-        { icon: "🎨", label: "UI Design" },
-        { icon: "✏️", label: "Branding" },
-        { icon: "📱", label: "Mobile" },
-      ],
+      hero: { headline: "UI/UX Designer", cta: "View Work" },
+      stats: [{ label: "Projects", value: "45+" }, { label: "Clients", value: "30+" }],
+      cards: [{ icon: "🎨", label: "UI Design" }, { icon: "✏️", label: "Branding" }, { icon: "📱", label: "Mobile" }],
     },
   },
   {
     title: "IronFit Gym",
     category: "Fitness Center",
-    color: "from-yellow-500/20 to-amber-900/20",
-    hoverColor: "group-hover:border-yellow-500/50",
-    accentColor: "#d97706",
+    gradient: "linear-gradient(135deg, rgba(234,179,8,0.12), rgba(245,158,11,0.06))",
+    border: "rgba(234,179,8,0.18)",
+    accent: "#d97706",
     mockup: {
       nav: ["Classes", "Trainers", "Plans", "Join Now"],
-      hero: { headline: "Transform Your Body", sub: "Expert coaching and premium equipment", cta: "Start Free Trial" },
-      stat1: { label: "Members", value: "1,800+" },
-      stat2: { label: "Trainers", value: "25+" },
-      cards: [
-        { icon: "🏋️", label: "Strength" },
-        { icon: "🧘", label: "Yoga" },
-        { icon: "🥊", label: "Boxing" },
-      ],
+      hero: { headline: "Transform Your Body", cta: "Start Free Trial" },
+      stats: [{ label: "Members", value: "1,800+" }, { label: "Trainers", value: "25+" }],
+      cards: [{ icon: "🏋️", label: "Strength" }, { icon: "🧘", label: "Yoga" }, { icon: "🥊", label: "Boxing" }],
     },
   },
   {
     title: "LuxuryNest Realty",
     category: "Real Estate",
-    color: "from-emerald-500/20 to-green-900/20",
-    hoverColor: "group-hover:border-emerald-500/50",
-    accentColor: "#059669",
+    gradient: "linear-gradient(135deg, rgba(34,197,94,0.12), rgba(16,185,129,0.06))",
+    border: "rgba(34,197,94,0.18)",
+    accent: "#059669",
     mockup: {
       nav: ["Buy", "Rent", "Listings", "Contact"],
-      hero: { headline: "Find Your Dream Home", sub: "Premium properties across India's top cities", cta: "Browse Listings" },
-      stat1: { label: "Properties", value: "320+" },
-      stat2: { label: "Sold This Year", value: "140+" },
-      cards: [
-        { icon: "🏠", label: "Villas" },
-        { icon: "🏢", label: "Apartments" },
-        { icon: "🌆", label: "Commercial" },
-      ],
+      hero: { headline: "Find Your Dream Home", cta: "Browse Listings" },
+      stats: [{ label: "Properties", value: "320+" }, { label: "Sold", value: "140+" }],
+      cards: [{ icon: "🏠", label: "Villas" }, { icon: "🏢", label: "Apartments" }, { icon: "🌆", label: "Commercial" }],
     },
   },
 ];
 
-function DesktopMockup({ mockup, accentColor }: { mockup: typeof projects[0]["mockup"]; accentColor: string }) {
+type ProjectType = typeof projects[0];
+
+function MockupScreen({ project }: { project: ProjectType }) {
+  const { mockup, accent } = project;
   return (
-    <div className="absolute inset-5 rounded-xl bg-[#0d1117] border border-white/10 shadow-2xl overflow-hidden group-hover:scale-[1.03] transition-transform duration-700">
+    <div className="absolute inset-5 rounded-xl overflow-hidden"
+         style={{ background: "#050810", border: "1px solid rgba(255,255,255,0.08)" }}>
       {/* Browser chrome */}
-      <div className="w-full h-7 bg-[#161b22] border-b border-white/8 flex items-center px-3 gap-1.5 flex-shrink-0">
-        <div className="w-2 h-2 rounded-full bg-red-500/70" />
-        <div className="w-2 h-2 rounded-full bg-yellow-500/70" />
-        <div className="w-2 h-2 rounded-full bg-green-500/70" />
-        <div className="mx-2 flex-1 h-3 rounded-sm bg-white/5 max-w-[120px]" />
+      <div className="flex items-center gap-1.5 px-3 py-2" style={{ background: "#080d18", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+        <div className="w-1.5 h-1.5 rounded-full bg-red-500/60" />
+        <div className="w-1.5 h-1.5 rounded-full bg-yellow-500/60" />
+        <div className="w-1.5 h-1.5 rounded-full bg-green-500/60" />
+        <div className="flex-1 mx-2 h-2.5 rounded-sm" style={{ background: "rgba(255,255,255,0.04)" }} />
       </div>
-      {/* Site navbar */}
-      <div className="w-full h-7 bg-[#0d1117] border-b border-white/5 flex items-center px-4 gap-3">
-        <div className="w-12 h-2 rounded-sm" style={{ backgroundColor: accentColor + "cc" }} />
+      {/* Nav */}
+      <div className="flex items-center px-4 py-2 gap-3" style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+        <div className="w-10 h-1.5 rounded-sm" style={{ background: accent + "bb" }} />
         <div className="flex-1" />
         {mockup.nav.map((n) => (
-          <div key={n} className="h-1.5 rounded-sm bg-white/20" style={{ width: `${n.length * 5}px` }} />
+          <div key={n} className="h-1 rounded-sm" style={{ width: n.length * 4, background: "rgba(255,255,255,0.18)" }} />
         ))}
       </div>
-      {/* Hero area */}
-      <div className="px-4 pt-4 pb-2">
-        <div className="h-2 rounded-sm mb-2 w-3/5" style={{ backgroundColor: accentColor + "99" }} />
-        <div className="h-1.5 rounded-sm bg-white/15 mb-1 w-4/5" />
-        <div className="h-1.5 rounded-sm bg-white/10 mb-3 w-2/3" />
-        <div className="inline-flex h-4 px-3 rounded-sm items-center" style={{ backgroundColor: accentColor }}>
-          <div className="h-1 w-10 rounded-sm bg-white/80" />
+      {/* Hero text */}
+      <div className="px-4 pt-3 pb-2">
+        <div className="h-2 w-3/5 rounded-sm mb-2" style={{ background: accent + "99" }} />
+        <div className="h-1 w-4/5 rounded-sm mb-1" style={{ background: "rgba(255,255,255,0.12)" }} />
+        <div className="h-3.5 px-3 rounded-sm mt-3 inline-flex items-center" style={{ background: accent }}>
+          <div className="h-1 w-8 rounded-sm" style={{ background: "rgba(255,255,255,0.8)" }} />
         </div>
       </div>
-      {/* Stats row */}
-      <div className="flex gap-2 px-4 pt-1 pb-2">
-        <div className="flex-1 rounded-lg bg-white/[0.04] border border-white/8 p-2">
-          <div className="h-2.5 rounded-sm mb-1 w-2/3" style={{ backgroundColor: accentColor + "cc" }} />
-          <div className="h-1.5 rounded-sm bg-white/20 w-1/2" />
-        </div>
-        <div className="flex-1 rounded-lg bg-white/[0.04] border border-white/8 p-2">
-          <div className="h-2.5 rounded-sm mb-1 w-2/3" style={{ backgroundColor: accentColor + "cc" }} />
-          <div className="h-1.5 rounded-sm bg-white/20 w-1/2" />
-        </div>
+      {/* Stats */}
+      <div className="flex gap-2 px-4 py-1">
+        {mockup.stats.map((s) => (
+          <div key={s.label} className="flex-1 rounded-lg p-2" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+            <div className="h-2 w-2/3 rounded-sm mb-1" style={{ background: accent + "bb" }} />
+            <div className="h-1 w-1/2 rounded-sm" style={{ background: "rgba(255,255,255,0.18)" }} />
+          </div>
+        ))}
       </div>
-      {/* Service cards row */}
+      {/* Cards */}
       <div className="flex gap-1.5 px-4 pt-1">
         {mockup.cards.map((c) => (
-          <div key={c.label} className="flex-1 rounded-lg bg-white/[0.04] border border-white/8 p-2 flex flex-col items-center gap-1">
-            <span className="text-[10px]">{c.icon}</span>
-            <div className="h-1 rounded-sm bg-white/25 w-full" />
+          <div key={c.label} className="flex-1 rounded-lg p-2 flex flex-col items-center gap-1"
+               style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
+            <span className="text-[9px]">{c.icon}</span>
+            <div className="h-1 w-full rounded-sm" style={{ background: "rgba(255,255,255,0.2)" }} />
           </div>
         ))}
       </div>
@@ -165,47 +137,58 @@ function DesktopMockup({ mockup, accentColor }: { mockup: typeof projects[0]["mo
   );
 }
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({ project, index }: { project: ProjectType; index: number }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+  const rotateX = useTransform(useSpring(y), [-0.5, 0.5], ["7deg", "-7deg"]);
+  const rotateY = useTransform(useSpring(x), [-0.5, 0.5], ["-7deg", "7deg"]);
 
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
-    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
   };
-
-  const handleMouseLeave = () => { x.set(0); y.set(0); };
+  const onLeave = () => { x.set(0); y.set(0); };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.15, duration: 0.6 }}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={`relative w-full aspect-[4/3] rounded-2xl glass-panel border border-white/10 ${project.hoverColor} transition-colors duration-500 overflow-hidden group cursor-none`}
-      data-cursor-text="View Project"
+      transition={{ delay: index * 0.1, duration: 0.6 }}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+        background: project.gradient,
+        border: `1px solid rgba(255,255,255,0.06)`,
+        backdropFilter: "blur(20px)",
+      } as React.CSSProperties}
+      onMouseMove={onMove}
+      onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.borderColor = project.border; }}
+      onMouseLeave={(e) => {
+        onLeave();
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.06)";
+      }}
+      className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden group cursor-none"
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-40`} />
-      <DesktopMockup mockup={project.mockup} accentColor={project.accentColor} />
-      <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 flex justify-between items-end">
+      <MockupScreen project={project} />
+
+      {/* Reveal overlay */}
+      <div className="absolute inset-x-0 bottom-0 p-6 flex justify-between items-end"
+           style={{
+             background: "linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.8) 40%, transparent 100%)",
+             transform: "translateY(4px)",
+             transition: "transform 0.4s ease",
+           }}
+           onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
+      >
         <div>
-          <p className="text-sm font-medium text-gray-400 mb-1">{project.category}</p>
-          <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+          <p className="text-[11px] font-medium text-white/40 mb-1">{project.category}</p>
+          <h3 className="text-lg font-bold text-white">{project.title}</h3>
         </div>
-        <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-4 group-hover:translate-x-0">
-          <ArrowUpRight size={20} />
+        <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400 -translate-x-3 group-hover:translate-x-0" style={{ transition: "opacity 0.4s, transform 0.4s" }}>
+          <ArrowUpRight size={18} className="text-black" />
         </div>
       </div>
     </motion.div>
@@ -215,44 +198,43 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 export function FeaturedWork() {
   const [, setLocation] = useLocation();
 
-  const goToProjects = () => {
-    setLocation("/projects");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <section id="work" className="py-32 relative">
-      <div className="container mx-auto px-6 md:px-12">
+    <section id="work" className="py-36 relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="max-w-2xl"
           >
-            <div className="text-sm font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-aurora mb-4 uppercase">
-              Portfolio
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-gray-900">Selected Work</h2>
+            <span className="section-label">Portfolio</span>
+            <h2
+              className="font-bold text-white"
+              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", letterSpacing: "-0.025em" }}
+            >
+              Selected Work
+            </h2>
           </motion.div>
           <motion.button
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            onClick={goToProjects}
-            className="px-6 py-3 rounded-full border dark:border-white/20 border-gray-300 dark:text-white text-gray-900 dark:hover:bg-white dark:hover:text-black hover:bg-gray-900 hover:text-white font-medium transition-all"
+            onClick={() => { setLocation("/projects"); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="px-6 py-3 rounded-full glass-panel text-sm font-semibold text-white/60 hover:text-white hover:border-white/20 transition-all"
             data-interactive
             data-testid="view-all-projects"
           >
-            View All Projects
+            View All Projects →
           </motion.button>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-[2000px]">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5" style={{ perspective: "2000px" }}>
           {projects.map((project, i) => (
-            <ProjectCard key={i} project={project} index={i} />
+            <ProjectCard key={project.title} project={project} index={i} />
           ))}
         </div>
+
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -7,43 +7,45 @@ const testimonials = [
     name: "Rahul Sharma",
     role: "Restaurant Owner",
     initial: "R",
-    color: "from-orange-400 to-red-500",
+    accent: "#fb923c",
   },
   {
     quote: "Our clinic bookings increased by 40% after the new website launched. The design is clean, professional, and patient-friendly.",
     name: "Dr. Priya Mehta",
     role: "Healthcare Professional",
     initial: "P",
-    color: "from-teal-400 to-cyan-500",
+    accent: "#2dd4bf",
   },
   {
     quote: "Professional, fast, and genuinely world-class design quality. It feels like an agency that charges 10x the price.",
     name: "Arjun Kapoor",
     role: "Startup Founder",
     initial: "A",
-    color: "from-blue-400 to-purple-500",
+    accent: "#60a5fa",
   },
 ];
 
 export function Testimonials() {
   return (
     <section className="py-28 relative">
-      <div className="container mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-16"
+          className="text-center mb-16"
         >
-          <div className="text-sm font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-aurora mb-4 uppercase">
-            Endorsements
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-gray-900">
+          <span className="section-label">Endorsements</span>
+          <h2
+            className="font-bold text-white"
+            style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", letterSpacing: "-0.025em" }}
+          >
             Client Stories
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
@@ -51,39 +53,37 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.5 }}
-              whileHover={{ y: -4 }}
-              className="glass-panel p-7 rounded-3xl border dark:border-white/8 border-gray-200 hover:border-blue-400/40 hover:shadow-[0_8px_30px_rgba(59,130,246,0.1)] transition-all duration-300 flex flex-col justify-between"
+              whileHover={{ y: -5, transition: { duration: 0.25 } }}
+              className="p-7 rounded-2xl glass-panel flex flex-col justify-between hover:border-white/10 transition-all duration-300"
             >
               <div>
                 {/* Stars */}
-                <div className="flex gap-1 mb-5">
+                <div className="flex gap-1 mb-6">
                   {Array.from({ length: 5 }).map((_, idx) => (
-                    <Star key={idx} size={14} className="text-yellow-400 fill-yellow-400" />
+                    <Star key={idx} size={12} className="fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-
-                {/* Quote icon */}
-                <Quote size={24} className="dark:text-white/10 text-gray-300 mb-3 rotate-180" />
-
-                {/* Quote text */}
-                <p className="text-base dark:text-gray-300 text-gray-700 leading-relaxed italic mb-6">
-                  "{t.quote}"
-                </p>
+                {/* Quote */}
+                <p className="text-sm text-white/55 leading-relaxed italic mb-6">"{t.quote}"</p>
               </div>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-5 border-t dark:border-white/8 border-gray-100">
-                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${t.color} flex items-center justify-center font-bold text-sm text-white flex-shrink-0 shadow-md`}>
-                  {t.initial}
+              <div className="flex items-center gap-3 pt-5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm text-white flex-shrink-0"
+                  style={{ background: `${t.accent}22`, border: `1px solid ${t.accent}44` }}
+                >
+                  <span style={{ color: t.accent }}>{t.initial}</span>
                 </div>
                 <div>
-                  <h4 className="font-bold dark:text-white text-gray-900 text-sm">{t.name}</h4>
-                  <p className="text-xs dark:text-gray-400 text-gray-500">{t.role}</p>
+                  <h4 className="font-bold text-white text-sm">{t.name}</h4>
+                  <p className="text-xs text-white/35">{t.role}</p>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
