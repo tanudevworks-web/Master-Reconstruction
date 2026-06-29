@@ -22,16 +22,18 @@ export const projects: Project[] = [
   {
     id: "restaurant-website",
     title: "Restaurant Website",
-    description: "A premium dining experience website with online menu, gallery, table reservation system, and WhatsApp ordering integration.",
+    description:
+      "A premium dining experience website with online menu, gallery, table reservation system, and WhatsApp ordering integration.",
     category: "Restaurant",
     tech: ["React", "Tailwind", "Firebase"],
-    link: "",
+    link: " https://serai-fa-premium.vercel.app/ ",
     gradient: "from-orange-500/30 to-red-600/30",
   },
   {
     id: "dental-clinic-website",
     title: "Dental Clinic Website",
-    description: "Modern healthcare web presence with appointment booking, service listings, doctor profiles, and trust-building testimonials.",
+    description:
+      "Modern healthcare web presence with appointment booking, service listings, doctor profiles, and trust-building testimonials.",
     category: "Healthcare",
     tech: ["Next.js", "TypeScript", "Tailwind"],
     link: "#",
@@ -40,7 +42,8 @@ export const projects: Project[] = [
   {
     id: "salon-website",
     title: "Salon Website",
-    description: "Elegant salon & beauty studio website featuring service menu, staff showcase, online booking, and Instagram gallery feed.",
+    description:
+      "Elegant salon & beauty studio website featuring service menu, staff showcase, online booking, and Instagram gallery feed.",
     category: "Beauty & Wellness",
     tech: ["React", "Framer Motion", "Tailwind"],
     link: "#",
@@ -49,7 +52,8 @@ export const projects: Project[] = [
   {
     id: "gym-website",
     title: "Gym Website",
-    description: "High-energy fitness center website with class schedules, membership plans, trainer profiles, and a motivating visual design.",
+    description:
+      "High-energy fitness center website with class schedules, membership plans, trainer profiles, and a motivating visual design.",
     category: "Fitness",
     tech: ["React", "Tailwind", "TypeScript"],
     link: "#",
@@ -58,7 +62,8 @@ export const projects: Project[] = [
   {
     id: "real-estate-website",
     title: "Real Estate Website",
-    description: "Premium property listing platform with advanced filters, virtual tour integration, lead capture forms, and interactive maps.",
+    description:
+      "Premium property listing platform with advanced filters, virtual tour integration, lead capture forms, and interactive maps.",
     category: "Real Estate",
     tech: ["Next.js", "Tailwind", "Firebase"],
     link: "#",
@@ -67,7 +72,8 @@ export const projects: Project[] = [
   {
     id: "ecommerce-website",
     title: "E-Commerce Website",
-    description: "Full-featured online store with product catalog, cart, payment gateway integration, order tracking, and admin dashboard.",
+    description:
+      "Full-featured online store with product catalog, cart, payment gateway integration, order tracking, and admin dashboard.",
     category: "E-Commerce",
     tech: ["Next.js", "TypeScript", "Stripe"],
     link: "#",
@@ -86,7 +92,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       data-testid={`project-card-${project.id}`}
     >
       {/* Thumbnail placeholder */}
-      <div className={`relative h-52 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}>
+      <div
+        className={`relative h-52 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}
+      >
         <div className="absolute inset-0 backdrop-blur-[1px]" />
         {/* Decorative mockup lines */}
         <div className="relative z-10 w-48 h-32 rounded-lg bg-black/30 border border-white/10 p-3 backdrop-blur-sm">
@@ -180,7 +188,8 @@ export function Projects() {
             All Projects
           </h1>
           <p className="text-lg dark:text-gray-400 text-gray-600 max-w-xl">
-            A collection of websites built for businesses, clinics, restaurants, and brands across India.
+            A collection of websites built for businesses, clinics, restaurants,
+            and brands across India.
           </p>
         </motion.div>
 
@@ -202,7 +211,16 @@ export function Projects() {
             Have a project in mind? Let's build something premium together.
           </p>
           <button
-            onClick={() => { setLocation("/"); setTimeout(() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+            onClick={() => {
+              setLocation("/");
+              setTimeout(
+                () =>
+                  document
+                    .querySelector("#contact")
+                    ?.scrollIntoView({ behavior: "smooth" }),
+                100,
+              );
+            }}
             className="px-8 py-4 rounded-full bg-gradient-aurora text-white font-bold hover:shadow-[0_0_24px_rgba(59,130,246,0.4)] transition-all"
             data-interactive
             data-testid="cta-start-project"

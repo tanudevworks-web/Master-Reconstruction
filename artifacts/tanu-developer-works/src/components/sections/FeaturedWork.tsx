@@ -7,6 +7,7 @@ const projects = [
   {
     title: "Somil Dental Clinic",
     category: "Dental Healthcare",
+    link: "https://somil-dental-clinic.vercel.app/",
     color: "from-teal-500/20 to-cyan-900/20",
     hoverColor: "group-hover:border-teal-500/50",
     accentColor: "#0d9488",
@@ -25,6 +26,7 @@ const projects = [
   {
     title: "Spice Garden Restaurant",
     category: "Premium Dining",
+    link: "",
     color: "from-orange-500/20 to-red-900/20",
     hoverColor: "group-hover:border-orange-500/50",
     accentColor: "#ea580c",
@@ -43,6 +45,7 @@ const projects = [
   {
     title: "NexGen Corporate",
     category: "Business Website",
+    link: "",
     color: "from-blue-500/20 to-indigo-900/20",
     hoverColor: "group-hover:border-blue-500/50",
     accentColor: "#2563eb",
@@ -61,6 +64,7 @@ const projects = [
   {
     title: "Alex Rivera Portfolio",
     category: "Creative Portfolio",
+    link: "",
     color: "from-purple-500/20 to-pink-900/20",
     hoverColor: "group-hover:border-purple-500/50",
     accentColor: "#9333ea",
@@ -79,6 +83,7 @@ const projects = [
   {
     title: "IronFit Gym",
     category: "Fitness Center",
+    link: "",
     color: "from-yellow-500/20 to-amber-900/20",
     hoverColor: "group-hover:border-yellow-500/50",
     accentColor: "#d97706",
@@ -97,6 +102,7 @@ const projects = [
   {
     title: "LuxuryNest Realty",
     category: "Real Estate",
+    link: "",
     color: "from-emerald-500/20 to-green-900/20",
     hoverColor: "group-hover:border-emerald-500/50",
     accentColor: "#059669",
@@ -175,7 +181,7 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
   const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const xPct = (e.clientX - rect.left) / rect.width - 0.5;
     const yPct = (e.clientY - rect.top) / rect.height - 0.5;
@@ -185,8 +191,13 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
 
   const handleMouseLeave = () => { x.set(0); y.set(0); };
 
+  const hasLink = project.link && project.link.trim() !== "";
+
   return (
-    <motion.div
+    <motion.a
+      href={hasLink ? project.link : undefined}
+      target={hasLink ? "_blank" : undefined}
+      rel={hasLink ? "noopener noreferrer" : undefined}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -194,8 +205,9 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative w-full aspect-[4/3] rounded-2xl glass-panel border border-white/10 ${project.hoverColor} transition-colors duration-500 overflow-hidden group cursor-none`}
-      data-cursor-text="View Project"
+      className={`relative w-full aspect-[4/3] rounded-2xl glass-panel border border-white/10 ${project.hoverColor} transition-colors duration-500 overflow-hidden group ${hasLink ? "cursor-pointer" : "cursor-default"}`}
+      data-cursor-text={hasLink ? "View Project" : "Coming Soon"}
+      data-interactive
     >
       <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-40`} />
       <DesktopMockup mockup={project.mockup} accentColor={project.accentColor} />
@@ -203,12 +215,15 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
         <div>
           <p className="text-sm font-medium text-gray-400 mb-1">{project.category}</p>
           <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+          {!hasLink && (
+            <span className="text-xs text-gray-500 mt-1 inline-block">Coming soon</span>
+          )}
         </div>
-        <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-4 group-hover:translate-x-0">
+        <div className={`w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0 ${hasLink ? "bg-white text-black" : "bg-white/20 text-white"}`}>
           <ArrowUpRight size={20} />
         </div>
       </div>
-    </motion.div>
+    </motion.a>
   );
 }
 
@@ -224,7 +239,7 @@ export function FeaturedWork() {
     <section id="work" className="py-32 relative">
       <div className="container mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
