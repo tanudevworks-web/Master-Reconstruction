@@ -3,70 +3,72 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(0);
-  const [done, setDone] = useState(false);
+  const [phase, setPhase] = useState<"logo" | "text" | "done">("logo");
 
   useEffect(() => {
-    const finish = setTimeout(() => {
-      setDone(true);
-      setTimeout(onComplete, 700);
-    }, 2000);
+    const timer1 = setTimeout(() => setPhase("text"), 800);
+    const timer2 = setTimeout(() => setPhase("done"), 1800);
+    const timer3 = setTimeout(() => onComplete(), 2200);
 
-    const tick = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 100) { clearInterval(tick); return 100; }
-        return p + Math.random() * 8 + 2;
-      });
-    }, 40);
+    const interval = setInterval(() => {
+      setProgress((p) => Math.min(p + 5, 100));
+    }, 30);
 
-    return () => { clearTimeout(finish); clearInterval(tick); };
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+      clearInterval(interval);
+    };
   }, [onComplete]);
 
   return (
     <AnimatePresence>
-      {!done && (
+      {phase !== "done" && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.02 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-50 flex flex-col items-center justify-center"
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black"
           data-testid="loading-screen"
         >
-          {/* Center content */}
-          <div className="flex flex-col items-center gap-8">
-            {/* Animated logo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center gap-2"
-            >
-              <span className="text-5xl font-bold tracking-tighter text-white leading-none">TDW</span>
-              <motion.span
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
-                className="text-xs tracking-[0.3em] text-white/35 uppercase font-medium"
-              >
-                TanuDeveloper Works
-              </motion.span>
-            </motion.div>
-
-            {/* Progress bar */}
-            <motion.div
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ opacity: 1, scaleX: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              className="w-48 h-[1px] bg-white/10 rounded-full overflow-hidden"
-            >
-              <motion.div
-                className="h-full rounded-full"
-                style={{
-                  width: `${Math.min(progress, 100)}%`,
-                  background: "linear-gradient(90deg, #3b82f6, #06b6d4)",
-                }}
+          <div className="relative flex flex-col items-center">
+            <AnimatePresence mode="wait">
+              {phase === "logo" && (
+                <motion.div
+                  key="logo"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.1 }}
+                  className="text-6xl font-bold tracking-tighter text-white"
+                >
+                  TDW
+                </motion.div>
+              )}
+              {phase === "text" && (
+                <motion.div
+                  key="text"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="text-3xl font-bold tracking-tight text-white flex flex-col items-center"
+                >
+                  <span className="text-gradient-aurora">TanuDeveloper Works</span>
+                  <span className="text-sm tracking-[0.3em] text-gray-400 mt-2 uppercase font-light">
+                    Premium Studio
+                  </span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            
+            <div className="w-48 h-1 bg-white/10 mt-12 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-gradient-aurora"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
                 transition={{ duration: 0.1 }}
               />
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       )}

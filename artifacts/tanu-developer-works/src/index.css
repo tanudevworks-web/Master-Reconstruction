@@ -36,301 +36,273 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ── TOKENS (always dark) ─────────────────────────────────── */
+/* ── DARK TOKENS (default) ───────────────────────────────────────────────── */
 :root {
-  --background: 0 0% 2%;
-  --foreground: 0 0% 100%;
-  --card: 0 0% 4%;
-  --card-foreground: 0 0% 100%;
-  --card-border: 0 0% 8%;
-  --popover: 0 0% 4%;
-  --popover-foreground: 0 0% 100%;
-  --popover-border: 0 0% 8%;
-  --primary: 214 100% 60%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 197 100% 44%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 0 0% 10%;
-  --muted-foreground: 0 0% 55%;
-  --accent: 214 100% 60%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 62.8% 50%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 10%;
-  --input: 0 0% 8%;
-  --ring: 214 100% 60%;
+  --background: 0 0% 4%;
+  --foreground: 210 40% 98%;
+  --card: 0 0% 6%;
+  --card-foreground: 210 40% 98%;
+  --card-border: 0 0% 12%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 210 40% 98%;
+  --popover-border: 0 0% 12%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 262 83% 58%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217 91% 60%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 0 0% 15%;
+  --input: 0 0% 15%;
+  --ring: 217 91% 60%;
   --app-font-sans: 'Space Grotesk', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
   --radius: 0.75rem;
 }
 
-/* ── LIGHT MODE (slightly lighter dark, not white) ─────────── */
+/* ── LIGHT TOKENS ────────────────────────────────────────────────────────── */
 html:not(.dark) {
-  --background: 220 15% 8%;
-  --foreground: 0 0% 95%;
-  --card: 220 15% 11%;
-  --card-foreground: 0 0% 95%;
-  --card-border: 220 15% 16%;
-  --popover: 220 15% 11%;
-  --popover-foreground: 0 0% 95%;
-  --popover-border: 220 15% 16%;
-  --primary: 214 100% 60%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 197 100% 44%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 220 15% 18%;
-  --muted-foreground: 0 0% 55%;
-  --accent: 214 100% 60%;
-  --accent-foreground: 0 0% 100%;
+  --background: 210 20% 98%;
+  --foreground: 222 47% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 8%;
+  --card-border: 220 13% 91%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 8%;
+  --popover-border: 220 13% 91%;
+  --primary: 217 91% 52%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 262 83% 55%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 220 14% 94%;
+  --muted-foreground: 215 16% 40%;
+  --accent: 217 91% 52%;
+  --accent-foreground: 210 40% 98%;
   --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 220 15% 18%;
-  --input: 220 15% 15%;
-  --ring: 214 100% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 220 13% 88%;
+  --input: 220 13% 88%;
+  --ring: 217 91% 52%;
 }
 
-/* ══════════════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════════════════════════════
    BASE
-══════════════════════════════════════════════════════════ */
+══════════════════════════════════════════════════════════════════════════ */
 @layer base {
   * { @apply border-border; }
+  body { @apply font-sans antialiased bg-background text-foreground overflow-x-hidden; }
   html { @apply scroll-smooth; }
-  body {
-    @apply font-sans antialiased overflow-x-hidden;
-    background: #050505;
-    color: #ffffff;
-    cursor: none;
-  }
-  ::selection {
-    background: rgba(59, 130, 246, 0.3);
-    color: #fff;
-  }
-  ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 2px; }
 }
 
-/* ══════════════════════════════════════════════════════════
-   GLASS PANELS
-══════════════════════════════════════════════════════════ */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+/* ══════════════════════════════════════════════════════════════════════════
+   GLASS PANEL
+══════════════════════════════════════════════════════════════════════════ */
+.dark .glass-panel {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.09);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
 
-/* ══════════════════════════════════════════════════════════
-   GRADIENT UTILITIES  — blue → cyan palette, no purple
-══════════════════════════════════════════════════════════ */
+html:not(.dark) .glass-panel {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.04);
+}
+html:not(.dark) .glass-panel:hover {
+  box-shadow: 0 6px 28px rgba(0,0,0,0.09), 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   GRADIENT UTILITIES
+══════════════════════════════════════════════════════════════════════════ */
 .text-gradient-aurora {
-  background-image: linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%);
+  background-image: linear-gradient(135deg, #3b82f6, #8b5cf6);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .bg-gradient-aurora {
-  background-image: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  background-image: linear-gradient(135deg, #3b82f6, #8b5cf6);
 }
 
-/* ══════════════════════════════════════════════════════════
-   SECTION LABEL
-══════════════════════════════════════════════════════════ */
-.section-label {
-  display: inline-block;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(96, 165, 250, 0.7);
-  margin-bottom: 1rem;
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — SECTION BACKGROUNDS
+   Alternating warm whites for visual rhythm, like Linear / Stripe.
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) body,
+html:not(.dark) section {
+  background-color: hsl(210 20% 98%);
 }
 
-/* ══════════════════════════════════════════════════════════
-   FORM INPUTS (dark variant always)
-══════════════════════════════════════════════════════════ */
-.field {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 0.875rem 1rem;
-  color: #ffffff;
-  font-family: inherit;
-  font-size: 0.875rem;
-  transition: border-color 0.2s, background 0.2s;
+html:not(.dark) section:nth-of-type(even) {
+  background-color: hsl(220 22% 96%);
+}
+
+/* Named overrides for precision */
+html:not(.dark) #home       { background-color: hsl(210 20% 98%) !important; }
+html:not(.dark) #about      { background-color: hsl(220 22% 97%) !important; }
+html:not(.dark) #services   { background-color: hsl(210 20% 98%) !important; }
+html:not(.dark) #work       { background-color: hsl(220 22% 97%) !important; }
+html:not(.dark) #process    { background-color: hsl(210 20% 98%) !important; }
+html:not(.dark) #pricing    { background-color: hsl(220 22% 97%) !important; }
+html:not(.dark) #calculator { background-color: hsl(210 20% 98%) !important; }
+html:not(.dark) #contact    { background-color: hsl(220 22% 97%) !important; }
+
+/* Kill hardcoded dark bg classes in light */
+html:not(.dark) [class*="bg-[#0"],
+html:not(.dark) [class*="bg-[#05"],
+html:not(.dark) .bg-black\/40,
+html:not(.dark) .bg-black\/50,
+html:not(.dark) .bg-black\/30,
+html:not(.dark) .bg-black\/20 {
+  background-color: rgba(255,255,255,0.85) !important;
+}
+
+html:not(.dark) footer {
+  background-color: hsl(220 22% 94%) !important;
+  border-top: 1px solid rgba(0,0,0,0.07) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — TYPOGRAPHY
+   All hardcoded dark-palette text classes → high-contrast equivalents.
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) .text-white:not(.pricing-btn) {
+  color: hsl(222 47% 9%) !important;
+}
+html:not(.dark) .text-gray-100       { color: hsl(222 20% 14%) !important; }
+html:not(.dark) .text-gray-200       { color: hsl(222 16% 20%) !important; }
+html:not(.dark) .text-gray-300       { color: hsl(215 14% 28%) !important; }
+html:not(.dark) .text-gray-400       { color: hsl(215 12% 40%) !important; }
+html:not(.dark) .text-gray-500       { color: hsl(215 10% 50%) !important; }
+html:not(.dark) .text-gray-600       { color: hsl(215 10% 40%) !important; }
+html:not(.dark) .text-white\/80      { color: rgba(17,24,39,0.80) !important; }
+html:not(.dark) .text-white\/70      { color: rgba(17,24,39,0.70) !important; }
+html:not(.dark) .text-white\/60      { color: rgba(17,24,39,0.60) !important; }
+html:not(.dark) .text-white\/90      { color: rgba(17,24,39,0.90) !important; }
+
+/* Keep gradient text transparent */
+html:not(.dark) .text-gradient-aurora { color: transparent !important; }
+
+/* Keep accent colours vivid in light */
+html:not(.dark) .text-blue-400   { color: #2563eb !important; }
+html:not(.dark) .text-blue-300   { color: #1d4ed8 !important; }
+html:not(.dark) .text-green-400  { color: #16a34a !important; }
+html:not(.dark) .text-green-300  { color: #15803d !important; }
+html:not(.dark) .text-purple-400 { color: #7c3aed !important; }
+html:not(.dark) .text-yellow-500 { color: #ca8a04 !important; }
+html:not(.dark) .text-yellow-400 { color: #d97706 !important; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — BORDERS
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) .border-white\/10  { border-color: rgba(0,0,0,0.08)  !important; }
+html:not(.dark) .border-white\/8   { border-color: rgba(0,0,0,0.06)  !important; }
+html:not(.dark) .border-white\/20  { border-color: rgba(0,0,0,0.12)  !important; }
+html:not(.dark) .border-white\/5   { border-color: rgba(0,0,0,0.04)  !important; }
+html:not(.dark) .border-white\/15  { border-color: rgba(0,0,0,0.10)  !important; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — BG UTILITIES
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) .bg-white\/\[0\.03\] { background-color: rgba(255,255,255,0.85) !important; }
+html:not(.dark) .bg-white\/5         { background-color: rgba(0,0,0,0.03) !important; }
+html:not(.dark) .bg-white\/10        { background-color: rgba(0,0,0,0.04) !important; }
+html:not(.dark) .bg-white\/8         { background-color: rgba(0,0,0,0.04) !important; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — GLOW ORBS (much dimmer so they don't wash out cards)
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) [class*="blur-[100px]"],
+html:not(.dark) [class*="blur-[120px]"],
+html:not(.dark) [class*="blur-[150px]"] { opacity: 0.15 !important; }
+
+/* mix-blend-overlay causes washed-out look in light */
+html:not(.dark) .mix-blend-overlay { opacity: 0 !important; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — NAVBAR
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) nav {
+  background-color: rgba(248,249,252,0.95) !important;
+  border-bottom-color: rgba(0,0,0,0.07) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — INPUTS & SELECTS
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) input,
+html:not(.dark) select,
+html:not(.dark) textarea {
+  background-color: #ffffff !important;
+  border-color: rgba(0,0,0,0.12) !important;
+  color: hsl(222 47% 8%) !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+html:not(.dark) input:focus,
+html:not(.dark) select:focus,
+html:not(.dark) textarea:focus {
+  border-color: rgba(59,130,246,0.5) !important;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12), 0 1px 3px rgba(0,0,0,0.05);
   outline: none;
-  appearance: none;
 }
-.field::placeholder { color: rgba(255,255,255,0.2); }
-.field:focus {
-  border-color: rgba(59, 130, 246, 0.4);
-  background: rgba(59, 130, 246, 0.04);
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder { color: rgba(100,116,139,0.65) !important; }
+html:not(.dark) select option         { background-color: #ffffff; color: #111827; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — FEATURED WORK CARD
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) [data-cursor-text="View Project"] .absolute.inset-8 {
+  background-color: rgba(241,245,249,0.9) !important;
+  border-color: rgba(0,0,0,0.07) !important;
 }
-.field option {
-  background: #0a0f1a;
-  color: #ffffff;
+html:not(.dark) [data-cursor-text="View Project"] .w-full.h-8 {
+  background-color: rgba(0,0,0,0.03) !important;
+  border-color: rgba(0,0,0,0.05) !important;
+}
+html:not(.dark) .from-black.via-black\/80 {
+  background-image: linear-gradient(to top, rgba(15,23,42,0.88), rgba(15,23,42,0.55), transparent) !important;
 }
 
-/* ══════════════════════════════════════════════════════════
-   SECTION BACKGROUNDS — ensure cosmos shows through
-══════════════════════════════════════════════════════════ */
-section { background: transparent !important; }
-html:not(.dark) body { background: #050505; color: #ffffff; }
-html:not(.dark) section { background: transparent !important; }
-
-/* ══════════════════════════════════════════════════════════
-   PRICING BUTTON (works on both highlighted and plain)
-══════════════════════════════════════════════════════════ */
-.pricing-btn {
-  background: rgba(255, 255, 255, 0.06);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.10);
-}
-.pricing-btn:hover {
-  background: rgba(255, 255, 255, 0.10);
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — MOBILE NAV
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) .mobile-nav-overlay {
+  background-color: rgba(248,249,252,0.97) !important;
 }
 
-/* ══════════════════════════════════════════════════════════
-   PERSPECTIVE
-══════════════════════════════════════════════════════════ */
-.perspective-1000 { perspective: 1000px; }
-.perspective-2000 { perspective: 2000px; }
-
-/* ══════════════════════════════════════════════════════════
-   CURSOR
-══════════════════════════════════════════════════════════ */
-a, button, [data-interactive], [role="button"] { cursor: none; }
-
-/* ══════════════════════════════════════════════════════════
-   COSMIC UNIVERSE — CSS fallback layer
-══════════════════════════════════════════════════════════ */
-@keyframes cosmic-drift {
-  0%   { transform: translateY(0) translateX(0); }
-  33%  { transform: translateY(-10px) translateX(5px); }
-  66%  { transform: translateY(7px) translateX(-7px); }
-  100% { transform: translateY(0) translateX(0); }
-}
-@keyframes cosmic-twinkle {
-  0%, 100% { opacity: 0.3; }
-  50%       { opacity: 0.85; }
-}
-@keyframes cosmic-pulse {
-  0%, 100% { transform: translate(-50%,-50%) scale(1);    opacity: 0.4; }
-  50%       { transform: translate(-50%,-50%) scale(1.07); opacity: 0.55; }
-}
-@keyframes cosmic-orb-glow {
-  0%, 100% {
-    box-shadow: 0 0 80px 40px rgba(20,50,160,0.13), 0 0 160px 80px rgba(0,80,180,0.06);
-  }
-  50% {
-    box-shadow: 0 0 120px 60px rgba(25,65,190,0.19), 0 0 220px 110px rgba(0,100,200,0.09);
-  }
+/* ══════════════════════════════════════════════════════════════════════════
+   LIGHT MODE — PRICING
+══════════════════════════════════════════════════════════════════════════ */
+html:not(.dark) [data-testid="pricing-card-starter"],
+html:not(.dark) [data-testid="pricing-card-business"] {
+  background-color: #ffffff !important;
+  border-color: rgba(0,0,0,0.08) !important;
 }
 
-.cosmic-stars {
-  position: absolute;
-  inset: -50%;
-  width: 200%;
-  height: 200%;
-  border-radius: 9999px;
+/* ══════════════════════════════════════════════════════════════════════════
+   PRICING — equal-height alignment fix
+══════════════════════════════════════════════════════════════════════════ */
+[data-testid^="pricing-card-"] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.cosmic-stars-1 {
-  background:
-    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.85) 0%, transparent 100%),
-    radial-gradient(1px 1px at 25% 40%, rgba(200,220,255,0.65) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 40% 8%,  rgba(255,255,255,0.9) 0%, transparent 100%),
-    radial-gradient(1px 1px at 55% 70%,  rgba(180,210,255,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 68% 22%,  rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 80% 55%, rgba(210,230,255,0.75) 0%, transparent 100%),
-    radial-gradient(1px 1px at 90% 35%,  rgba(255,255,255,0.85) 0%, transparent 100%),
-    radial-gradient(1px 1px at 15% 80%,  rgba(195,218,255,0.55) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 85%,  rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(1px 1px at 35% 60%,  rgba(180,208,255,0.65) 0%, transparent 100%);
-  background-size:
-    400px 400px, 600px 600px, 350px 350px, 500px 500px, 450px 450px,
-    550px 550px, 300px 300px, 480px 480px, 420px 420px, 380px 380px;
-  animation: cosmic-drift 32s ease-in-out infinite, cosmic-twinkle 4.5s ease-in-out infinite;
-  opacity: 0.65;
-}
-
-.cosmic-stars-2 {
-  background:
-    radial-gradient(1px 1px at 5%  30%,  rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(1px 1px at 30% 10%,  rgba(180,215,255,0.65) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 50% 50%, rgba(255,255,255,0.85) 0%, transparent 100%),
-    radial-gradient(1px 1px at 65% 5%,   rgba(195,228,255,0.7) 0%, transparent 100%),
-    radial-gradient(1px 1px at 75% 40%,  rgba(255,255,255,0.75) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 75%,  rgba(160,200,255,0.55) 0%, transparent 100%),
-    radial-gradient(1px 1px at 20% 65%,  rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 45% 90%, rgba(215,232,255,0.65) 0%, transparent 100%);
-  background-size:
-    550px 550px, 420px 420px, 480px 480px, 390px 390px,
-    510px 510px, 470px 470px, 430px 430px, 360px 360px;
-  animation: cosmic-drift 42s ease-in-out infinite reverse, cosmic-twinkle 6.5s ease-in-out infinite 2s;
-  opacity: 0.42;
-}
-
-.cosmic-stars-3 {
-  background:
-    radial-gradient(0.5px 0.5px at 12% 45%, rgba(255,255,255,0.75) 0%, transparent 100%),
-    radial-gradient(0.5px 0.5px at 33% 25%, rgba(200,220,255,0.7) 0%, transparent 100%),
-    radial-gradient(0.5px 0.5px at 58% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(0.5px 0.5px at 72% 60%, rgba(180,210,255,0.65) 0%, transparent 100%),
-    radial-gradient(0.5px 0.5px at 88% 45%, rgba(255,255,255,0.75) 0%, transparent 100%),
-    radial-gradient(0.5px 0.5px at 22% 88%, rgba(210,230,255,0.6) 0%, transparent 100%),
-    radial-gradient(0.5px 0.5px at 48% 75%, rgba(255,255,255,0.75) 0%, transparent 100%),
-    radial-gradient(0.5px 0.5px at 60% 92%, rgba(200,220,255,0.65) 0%, transparent 100%);
-  background-size:
-    280px 280px, 320px 320px, 260px 260px, 310px 310px,
-    290px 290px, 270px 270px, 300px 300px, 285px 285px;
-  animation: cosmic-drift 55s ease-in-out infinite, cosmic-twinkle 8.5s ease-in-out infinite 1s;
-  opacity: 0.32;
-}
-
-.cosmic-nebula {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  pointer-events: none;
-}
-
-.cosmic-nebula-a {
-  width: 60vw; height: 60vw;
-  top: -20%; left: -15%;
-  background: radial-gradient(circle, rgba(10,30,110,0.28) 0%, rgba(5,12,55,0.09) 60%, transparent 100%);
-  animation: cosmic-drift 22s ease-in-out infinite;
-}
-
-.cosmic-nebula-b {
-  width: 50vw; height: 50vw;
-  top: 25%; right: -10%;
-  background: radial-gradient(circle, rgba(0,50,140,0.20) 0%, rgba(0,25,70,0.07) 60%, transparent 100%);
-  animation: cosmic-drift 30s ease-in-out infinite reverse 5s;
-}
-
-.cosmic-nebula-c {
-  width: 45vw; height: 45vw;
-  bottom: 5%; left: 20%;
-  background: radial-gradient(circle, rgba(0,80,140,0.16) 0%, rgba(0,40,70,0.05) 60%, transparent 100%);
-  animation: cosmic-drift 38s ease-in-out infinite 10s;
-}
-
-.cosmic-orb {
-  position: absolute;
-  top: 50vh;
-  left: 50%;
-  width: min(600px, 80vw);
-  height: min(600px, 80vw);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle at 40% 40%,
-    rgba(20,70,200,0.16) 0%,
-    rgba(0,90,190,0.10) 35%,
-    rgba(0,50,150,0.05) 65%,
-    transparent 100%
-  );
-  animation: cosmic-orb-glow 6s ease-in-out infinite, cosmic-pulse 8s ease-in-out infinite;
+/* ══════════════════════════════════════════════════════════════════════════
+   CURSOR — hide on touch devices
+══════════════════════════════════════════════════════════════════════════ */
+@media (hover: none) {
+  [data-testid="cursor-dot"],
+  [data-testid="cursor-ring"] { display: none !important; }
 }

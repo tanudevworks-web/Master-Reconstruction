@@ -1,18 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Trash2, Bot, RotateCcw } from "lucide-react";
-import {
-  detectIntent,
-  getResponse,
-  WELCOME_MESSAGE,
-} from "@/lib/chatKnowledge";
-import { saveAiChatLead, type AiChatLead } from "@/lib/firebaseLeads";
+import { detectIntent, getResponse, WELCOME_MESSAGE } from "@/lib/chatKnowledge";
+import { saveChatLead, type ChatLead } from "@/lib/firebaseLeads";
 
 const STORAGE_KEY = "tdw-chat-history";
 const WHATSAPP = "https://wa.me/918433553501";
 
 type Role = "user" | "bot";
-type LeadStep = "name" | "email" | "phone" | "businessType" | null;
+type LeadStep = "name" | "email" | "phone" | "projectType" | null;
 
 interface Msg {
   id: string;
@@ -70,9 +66,7 @@ function UserBubble({ msg }: { msg: Msg }) {
       <div className="max-w-[80%] px-4 py-2.5 rounded-2xl rounded-br-sm bg-gradient-aurora text-white text-sm leading-relaxed shadow-sm">
         {msg.text}
       </div>
-      <span className="text-[10px] dark:text-gray-600 text-gray-400 px-1">
-        {fmtTime(msg.ts)}
-      </span>
+      <span className="text-[10px] dark:text-gray-600 text-gray-400 px-1">{fmtTime(msg.ts)}</span>
     </motion.div>
   );
 }
@@ -95,10 +89,7 @@ function BotBubble({
       <div className="flex flex-col gap-1.5 max-w-[82%]">
         <div className="px-4 py-2.5 rounded-2xl rounded-bl-sm dark:bg-white/8 bg-gray-100 border dark:border-white/8 border-gray-200 text-sm dark:text-gray-100 text-gray-800 leading-relaxed">
           {lines.map((line, i) => {
-            const boldified = line.replace(
-              /\*\*(.+?)\*\*/g,
-              "<strong>$1</strong>",
-            );
+            const boldified = line.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
             return (
               <p
                 key={i}
@@ -134,9 +125,7 @@ function BotBubble({
             Chat on WhatsApp
           </a>
         )}
-        <span className="text-[10px] dark:text-gray-600 text-gray-400 px-1">
-          {fmtTime(msg.ts)}
-        </span>
+        <span className="text-[10px] dark:text-gray-600 text-gray-400 px-1">{fmtTime(msg.ts)}</span>
       </div>
     </motion.div>
   );
@@ -148,7 +137,7 @@ export function ChatBot() {
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [leadStep, setLeadStep] = useState<LeadStep>(null);
-  const [leadData, setLeadData] = useState<Partial<AiChatLead>>({});
+  const [leadData, setLeadData] = useState<Partial<ChatLead>>({});
   const [hasUnread, setHasUnread] = useState(true);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -202,14 +191,7 @@ export function ChatBot() {
     (text: string, quickReplies?: string[], showWhatsApp?: boolean) => {
       setMsgs((prev) => [
         ...prev,
-        {
-          id: uid(),
-          role: "bot",
-          text,
-          ts: Date.now(),
-          quickReplies,
-          showWhatsApp,
-        },
+        { id: uid(), role: "bot", text, ts: Date.now(), quickReplies, showWhatsApp },
       ]);
       if (!open) setHasUnread(true);
     },
@@ -222,10 +204,7 @@ export function ChatBot() {
       if (!trimmed) return;
 
       // Add user message
-      setMsgs((prev) => [
-        ...prev,
-        { id: uid(), role: "user", text: trimmed, ts: Date.now() },
-      ]);
+      setMsgs((prev) => [...prev, { id: uid(), role: "user", text: trimmed, ts: Date.now() }]);
       setInput("");
 
       setTyping(true);
@@ -239,9 +218,7 @@ export function ChatBot() {
         if (leadStep === "name") {
           setLeadData((d) => ({ ...d, name: trimmed }));
           setLeadStep("email");
-          addBotMsg(
-            `Nice to meet you, ${trimmed.split(" ")[0]}! 😊\n\nWhat's your email address? (optional — type "skip" to skip)`,
-          );
+          addBotMsg(`Nice to meet you, ${trimmed.split(" ")[0]}! 😊\n\nWhat's your email address? (optional — type "skip" to skip)`);
         } else if (leadStep === "email") {
           const email = trimmed.toLowerCase() === "skip" ? undefined : trimmed;
           setLeadData((d) => ({ ...d, email }));
@@ -249,26 +226,17 @@ export function ChatBot() {
           addBotMsg("Great! What's your WhatsApp / phone number?");
         } else if (leadStep === "phone") {
           setLeadData((d) => ({ ...d, phone: trimmed }));
-          setLeadStep("businessType");
-          addBotMsg("Almost done! What type of website are you looking for?", [
-            "Portfolio",
-            "Business Website",
-            "Restaurant",
-            "Clinic",
-            "E-Commerce",
-            "Landing Page",
-            "Custom",
-          ]);
-        } else if (leadStep === "businessType") {
-          const finalData: AiChatLead = {
-            ...leadData,
-            businessType: trimmed,
-            name: leadData.name ?? "Unknown",
-          };
+          setLeadStep("projectType");
+          addBotMsg(
+            "Almost done! What type of website are you looking for?",
+            ["Portfolio", "Business Website", "Restaurant", "Clinic", "E-Commerce", "Landing Page", "Custom"],
+          );
+        } else if (leadStep === "projectType") {
+          const finalData: ChatLead = { ...leadData, projectType: trimmed, name: leadData.name ?? "Unknown" };
           setLeadData(finalData);
           setLeadStep(null);
           try {
-            await saveAiChatLead(finalData);
+            await saveChatLead(finalData);
           } catch {
             /* fail silently */
           }
@@ -301,15 +269,10 @@ export function ChatBot() {
     [leadStep, leadData, addBotMsg],
   );
 
-  const handleSend = () => {
-    if (input.trim()) processUserInput(input);
-  };
+  const handleSend = () => { if (input.trim()) processUserInput(input); };
 
   const handleKey = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSend(); }
   };
 
   const clearChat = () => {
@@ -317,10 +280,7 @@ export function ChatBot() {
     setMsgs([]);
     setLeadStep(null);
     setLeadData({});
-    setTimeout(
-      () => addBotMsg(WELCOME_MESSAGE.text, WELCOME_MESSAGE.quickReplies),
-      200,
-    );
+    setTimeout(() => addBotMsg(WELCOME_MESSAGE.text, WELCOME_MESSAGE.quickReplies), 200);
   };
 
   return (
@@ -343,7 +303,7 @@ export function ChatBot() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold dark:text-white text-gray-900 leading-none mb-0.5">
-                  Tanu AI
+                  TDW Assistant
                 </p>
                 <p className="text-[11px] dark:text-gray-400 text-gray-500 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse" />
@@ -394,15 +354,7 @@ export function ChatBot() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKey}
-                placeholder={
-                  leadStep === "name"
-                    ? "Enter your name…"
-                    : leadStep === "email"
-                      ? "Enter your email…"
-                      : leadStep === "phone"
-                        ? "Enter your phone…"
-                        : "Type a message…"
-                }
+                placeholder={leadStep === "name" ? "Enter your name…" : leadStep === "email" ? "Enter your email…" : leadStep === "phone" ? "Enter your phone…" : "Type a message…"}
                 className="flex-1 px-4 py-2.5 rounded-xl text-sm dark:bg-white/6 bg-gray-100 border dark:border-white/8 border-gray-200 dark:text-white text-gray-900 placeholder:dark:text-gray-500 placeholder:text-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all"
               />
               <button
@@ -425,7 +377,7 @@ export function ChatBot() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 3.5, type: "spring", stiffness: 200 }}
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-24 right-6 sm:right-6 z-40 w-14 h-14 rounded-full bg-gradient-aurora flex items-center justify-center shadow-[0_4px_24px_rgba(59,130,246,0.45)] hover:shadow-[0_6px_36px_rgba(59,130,246,0.6)] transition-all"
+        className="fixed bottom-24 right-4 sm:right-6 z-40 w-14 h-14 rounded-full bg-gradient-aurora flex items-center justify-center shadow-[0_4px_24px_rgba(59,130,246,0.45)] hover:shadow-[0_6px_36px_rgba(59,130,246,0.6)] transition-all"
         data-interactive
         aria-label="Open AI Chat"
       >

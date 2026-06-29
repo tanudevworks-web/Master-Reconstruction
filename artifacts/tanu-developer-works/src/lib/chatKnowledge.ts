@@ -224,6 +224,6 @@ export function getResponse(intent: Intent): BotResponse {
 }
 
 export const WELCOME_MESSAGE: BotResponse = {
-  text: "👋 Hi! I'm **Tanu AI**.\n\nI can help with:\n\n• Website Pricing\n• Project Planning\n• Development Timelines\n• Website Features\n• Contact Information\n\nHow can I help today?",
-  quickReplies: ["Pricing", "Services", "Timeline", "Portfolio", "Contact", "Get Quote"],
+  text: "👋 Hi! Welcome to TanuDeveloper Works.\n\nI'm here to help you with:\n\n• Website Pricing\n• Development Services\n• Project Timelines\n• Custom Features\n• Contact Information\n\nAsk me anything!",
+  quickReplies: ["Pricing", "Services", "Timeline", "Portfolio", "Contact", "Get a Quote"],
 };

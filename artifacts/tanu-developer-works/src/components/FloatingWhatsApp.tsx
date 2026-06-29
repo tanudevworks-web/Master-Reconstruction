@@ -17,7 +17,7 @@ export function FloatingWhatsApp() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(34,197,94,0.45)] hover:shadow-[0_6px_32px_rgba(34,197,94,0.55)] transition-all ml-[10px] mr-[0px] pt-[0px] pb-[0px] mt-[0px] mb-[0px]"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-[0_4px_24px_rgba(34,197,94,0.45)] hover:shadow-[0_6px_32px_rgba(34,197,94,0.55)] transition-all"
         data-interactive
         aria-label="Chat on WhatsApp"
       >
@@ -42,7 +42,7 @@ export function FloatingWhatsApp() {
           initial={{ scale: 0.9, opacity: 0, x: 20 }}
           animate={{ scale: 1, opacity: 1, x: 0 }}
           transition={{ delay: 3, duration: 0.3 }}
-          className="dark:bg-gray-900 bg-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border dark:border-white/10 border-gray-200 p-4 max-w-[220px] relative ml-[0px] mr-[0px] mt-[0px] mb-[0px]"
+          className="dark:bg-gray-900 bg-white rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border dark:border-white/10 border-gray-200 p-4 max-w-[220px] relative"
         >
           {/* Close */}
           <button
@@ -59,9 +59,7 @@ export function FloatingWhatsApp() {
               <MessageCircle size={16} className="text-white" fill="white" />
             </div>
             <div>
-              <p className="font-bold text-xs dark:text-white text-gray-900">
-                Tanu Tapase
-              </p>
+              <p className="font-bold text-xs dark:text-white text-gray-900">Tanu Tapase</p>
               <p className="text-[10px] dark:text-gray-400 text-gray-500 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />
                 Online now

@@ -102,13 +102,13 @@ export function saveDiscountLead(data: DiscountLead) {
   return write("discount_leads", { ...data, source: "exit_intent_popup" });
 }
 
-export interface AiChatLead {
+export interface ChatLead {
   name: string;
   email?: string;
   phone?: string;
-  businessType?: string;
+  projectType?: string;
 }
 
-export function saveAiChatLead(data: AiChatLead) {
-  return write("ai_chat_leads", { ...data, source: "ai_assistant" });
+export function saveChatLead(data: ChatLead) {
+  return write("chat_leads", { ...data, source: "ai_chatbot" });
 }

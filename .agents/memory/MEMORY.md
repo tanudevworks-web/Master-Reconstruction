@@ -1,1 +1,0 @@
-- [TanuDeveloper Works design system](tanu-design-system.md) — dark-only palette, blue→cyan gradients, no purple; CosmicCanvas CSS fallback uses navy/teal nebula
