@@ -5,7 +5,7 @@ import { useLocation } from "wouter";
 
 const projects = [
   {
-    title: "SmileDental Clinic",
+    title: "Somil Dental Clinic",
     category: "Dental Healthcare",
     color: "from-teal-500/20 to-cyan-900/20",
     hoverColor: "group-hover:border-teal-500/50",
