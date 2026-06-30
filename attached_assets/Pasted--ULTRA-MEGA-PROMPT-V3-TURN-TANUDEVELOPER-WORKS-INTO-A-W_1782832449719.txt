@@ -1,0 +1,666 @@
+🚀 ULTRA MEGA PROMPT V3 — TURN TANUDEVELOPER WORKS INTO A WORLD-CLASS DIGITAL EXPERIENCE
+IMPORTANT
+
+Do NOT redesign the website.
+
+Do NOT replace the visual identity.
+
+Do NOT simplify anything.
+
+The current website already has a premium futuristic aesthetic.
+
+Your job is to evolve it, not rebuild it.
+
+Think like the team behind:
+
+Apple
+Awwwards
+Linear
+Stripe
+Vercel
+Framer
+GSAP Showcase
+
+Every interaction should feel intentional.
+
+Every animation should tell a story.
+
+Performance must remain excellent.
+
+No unnecessary animations.
+
+No lag.
+
+No cheap effects.
+
+OBJECTIVE
+
+Transform this website into one that feels like a $50,000+ digital agency website.
+
+When visitors open it they should immediately think
+
+"These people clearly know what they're doing."
+
+The design should communicate
+
+Premium
+
+Modern
+
+Luxury
+
+Minimal
+
+Future
+
+Technology
+
+Craftsmanship
+
+KEEP
+
+Existing colors
+
+Existing typography
+
+Existing layout
+
+Current branding
+
+Dark mode
+
+Glassmorphism
+
+Aurora gradients
+
+Do not replace them.
+
+Improve them.
+
+1. PROJECT SHOWCASE
+
+Completely upgrade project cards.
+
+Each card should include
+
+Live status badge
+
+Completion date
+
+Industry icon
+
+Technology stack
+
+Animated hover
+
+Premium lighting
+
+Floating glow
+
+3D depth
+
+Mouse parallax
+
+Soft reflections
+
+Hover should feel alive.
+
+LIVE WEBSITE PREVIEW
+
+When hovering over a project
+
+Show a floating browser window preview.
+
+Animate scrolling automatically.
+
+Use subtle perspective.
+
+Shadow should become deeper.
+
+Window should slightly tilt.
+
+The preview should feel like it is physically floating.
+
+PREMIUM OPEN ANIMATION
+
+Clicking View Project should
+
+Scale card slightly
+
+Glow expands
+
+Ripple animation
+
+Then smoothly open new tab.
+
+2. CASE STUDY PAGES
+
+Every project deserves a dedicated page.
+
+Structure
+
+Hero
+
+Overview
+
+Problem
+
+Research
+
+Planning
+
+Wireframes
+
+Development
+
+Features
+
+Tech Stack
+
+Challenges
+
+Performance
+
+SEO
+
+Results
+
+Gallery
+
+Client Feedback
+
+Next Project
+
+The page should feel like reading a luxury design case study.
+
+3. PROJECT FILTERING
+
+Replace static grid.
+
+Add animated filters
+
+All
+
+Healthcare
+
+Restaurant
+
+Gaming
+
+Portfolio
+
+Real Estate
+
+E-Commerce
+
+Business
+
+Agency
+
+Smooth layout transitions.
+
+No page reload.
+
+Cards reposition beautifully.
+
+4. LIVE METRICS
+
+Animated counters.
+
+Examples
+
+Projects Completed
+
+Happy Clients
+
+Countries Served
+
+Hours of Development
+
+Technologies Used
+
+Coffee Consumed ☕
+
+Animate only once.
+
+5. INTERACTIVE DEVICE SHOWCASE
+
+Replace static screenshots.
+
+Display
+
+Desktop
+
+↓
+
+Tablet
+
+↓
+
+Phone
+
+Auto switching.
+
+Smooth rotation.
+
+Glass reflections.
+
+Device floating.
+
+6. BEFORE VS AFTER
+
+Beautiful comparison slider.
+
+Old Website
+
+↓
+
+New Website
+
+Drag handle.
+
+Lighting.
+
+Smooth animation.
+
+7. WEBSITE COST ESTIMATOR
+
+Create a premium calculator.
+
+Questions
+
+Business type
+
+Pages
+
+Booking
+
+Payments
+
+SEO
+
+Admin Panel
+
+Authentication
+
+Animations
+
+Branding
+
+Timeline
+
+Then generate
+
+Estimated Cost
+
+Development Time
+
+Recommended Package
+
+Suggested Features
+
+Luxury summary card.
+
+8. AI CONSULTATION ASSISTANT
+
+Not a generic chatbot.
+
+It knows
+
+Services
+
+Pricing
+
+Timeline
+
+Portfolio
+
+Technologies
+
+Development Process
+
+FAQs
+
+Recommendations
+
+Should behave like a professional agency consultant.
+
+9. CLIENT JOURNEY
+
+Beautiful animated timeline.
+
+Step 1
+
+Discovery Call
+
+↓
+
+Planning
+
+↓
+
+UI Design
+
+↓
+
+Development
+
+↓
+
+Testing
+
+↓
+
+Launch
+
+↓
+
+Support
+
+Animated connecting lines.
+
+10. MICRO INTERACTIONS
+
+Every button
+
+Tiny scale
+
+Soft shadow
+
+Magnetic movement
+
+Ripple
+
+Glow
+
+No harsh animations.
+
+11. CURSOR
+
+Upgrade cursor.
+
+Dynamic magnetic cursor.
+
+Changes depending on
+
+Button
+
+Image
+
+Project
+
+Link
+
+Card
+
+Shows
+
+Open
+
+View
+
+Scroll
+
+Drag
+
+Hover
+
+12. PREMIUM LOADING
+
+Instead of spinner
+
+Beautiful intro
+
+Aurora
+
+Particles
+
+TanuDeveloper Works logo
+
+Typing animation
+
+Loading progress
+
+Then smooth reveal.
+
+13. SCROLL EXPERIENCE
+
+Section transitions.
+
+Fade
+
+Scale
+
+Mask reveal
+
+Perspective
+
+Text stagger
+
+Image reveal
+
+Glow movement
+
+Parallax
+
+Nothing repetitive.
+
+14. BACKGROUND
+
+Very subtle.
+
+Aurora movement.
+
+Floating particles.
+
+Depth layers.
+
+Animated gradient.
+
+Tiny glowing lines.
+
+No distraction.
+
+15. PROJECT DETAILS
+
+Every project should show
+
+Client
+
+Industry
+
+Timeline
+
+Technologies
+
+Performance Score
+
+SEO Score
+
+Accessibility
+
+Mobile Optimized
+
+Deployment
+
+Hosting
+
+Completion Date
+
+16. TESTIMONIALS
+
+Premium cards.
+
+Avatar
+
+Rating
+
+Company
+
+Quote
+
+Auto carousel
+
+Pause on hover.
+
+17. SERVICES
+
+Each service
+
+Animated icon
+
+Feature list
+
+Timeline
+
+Pricing range
+
+Deliverables
+
+Hover transformation
+
+18. ABOUT
+
+Interactive timeline.
+
+Coding journey.
+
+Milestones.
+
+Achievements.
+
+Skills.
+
+Future goals.
+
+19. PERFORMANCE
+
+Must achieve
+
+Lighthouse 95+
+
+Fast First Paint
+
+Smooth 60 FPS
+
+Lazy loading
+
+Image optimization
+
+GPU accelerated animations
+
+No layout shift
+
+No lag
+
+20. MOBILE
+
+Desktop quality.
+
+Nothing removed.
+
+Only adapted.
+
+Every animation optimized.
+
+Touch friendly.
+
+21. ACCESSIBILITY
+
+Keyboard navigation
+
+Focus states
+
+ARIA labels
+
+Reduced motion support
+
+Proper contrast
+
+Semantic HTML
+
+22. EASTER EGGS
+
+Konami code.
+
+Developer mode.
+
+Console message
+
+👋 Hey developer!
+
+Thanks for inspecting.
+
+Built with ❤️ by TanuDeveloper Works.
+
+Let's build something amazing.
+
+Small hidden interactions.
+
+Nothing childish.
+
+23. FINAL FEELING
+
+The visitor should feel
+
+Luxury
+
+Trust
+
+Technology
+
+Creativity
+
+Precision
+
+Craftsmanship
+
+Innovation
+
+Confidence
+
+DEVELOPMENT RULES
+
+Do NOT remove existing features.
+
+Do NOT break routing.
+
+Do NOT reduce performance.
+
+Do NOT introduce unnecessary dependencies.
+
+Refactor only where necessary.
+
+Maintain clean architecture.
+
+Reusable components.
+
+TypeScript-safe.
+
+Fully responsive.
+
+Production-ready.
+
+SUCCESS CRITERIA
+
+When someone lands on this website they should think:
+
+"This doesn't feel like a freelancer portfolio."
+
+It should feel like a high-end digital product studio capable of serving premium clients.
+
+The result should be polished enough to belong on Awwwards, CSS Design Awards, and The FWA, while remaining fast, accessible, and practical for real business use.
+
+💜 One extra idea just for TanuDeveloper Works
+
+Since you want your studio to stand out, add a "Build With Us" section instead of a generic contact section.
+
+Imagine a visitor reaches the end of the page and sees:
+
+Let's Build Something Extraordinary
+
+Not just another website.
+
+Not just another business.
+
+A digital experience

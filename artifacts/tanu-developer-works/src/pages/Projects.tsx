@@ -1,80 +1,36 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, ArrowLeft, Share2, Copy, Check, MessageCircle } from "lucide-react";
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { ExternalLink, ArrowLeft, Share2, Copy, Check, MessageCircle, Zap, TrendingUp } from "lucide-react";
 import { useLocation } from "wouter";
+import { projects, type Project } from "@/data/projects";
 
-export interface Project {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  tech: string[];
-  link: string;
-  gradient: string;
-}
-
-export const projects: Project[] = [
-  {
-    id: "restaurant-website",
-    title: "Restaurant Website",
-    description:
-      "A premium dining experience website with online menu, gallery, table reservation system, and WhatsApp ordering integration.",
-    category: "Restaurant",
-    tech: ["React", "Tailwind", "Firebase"],
-    link: "https://serai-fa-premium.vercel.app/",
-    gradient: "from-orange-500/30 to-red-600/30",
-  },
-  {
-    id: "dental-clinic-website",
-    title: "Dental Clinic Website",
-    description:
-      "Modern healthcare web presence with appointment booking, service listings, doctor profiles, and trust-building testimonials.",
-    category: "Healthcare",
-    tech: ["Next.js", "TypeScript", "Tailwind"],
-    link: "https://somil-dental-clinic.vercel.app/",
-    gradient: "from-blue-500/30 to-cyan-600/30",
-  },
-  {
-    id: "gaming-website",
-    title: "Gaming Website",
-    description:
-      "PC game compatibility checker featuring system requirement analysis, game comparisons, FPS estimates, and hardware recommendations.",
-    category: "Gaming",
-    tech: ["React", "Framer Motion", "Tailwind"],
-    link: "https://tanugamehub.vercel.app",
-    gradient: "from-pink-500/30 to-purple-600/30",
-  },
-  {
-    id: "gym-website",
-    title: "Gym Website",
-    description:
-      "High-energy fitness center website with class schedules, membership plans, trainer profiles, and a motivating visual design.",
-    category: "Fitness",
-    tech: ["React", "Tailwind", "TypeScript"],
-    link: "https://aurum-gym.vercel.app/",
-    gradient: "from-yellow-500/30 to-orange-600/30",
-  },
-  {
-    id: "clothing-website",
-    title: "Clothing Website",
-    description:
-      "Stylish fashion e-commerce site with product listings, category filters, a clean shopping experience, and a modern visual identity.",
-    category: "Fashion",
-    tech: ["Next.js", "Tailwind", "Firebase"],
-    link: "https://sea-clothing.vercel.app",
-    gradient: "from-green-500/30 to-teal-600/30",
-  },
-  {
-    id: "ecommerce-website",
-    title: "E-Commerce Website",
-    description:
-      "Full-featured online store with product catalog, cart, payment gateway integration, order tracking, and admin dashboard.",
-    category: "E-Commerce",
-    tech: ["Next.js", "TypeScript", "Stripe"],
-    link: "https://ecommerce-pro-tanu.vercel.app/",
-    gradient: "from-purple-500/30 to-blue-600/30",
-  },
+const FILTERS = [
+  { label: "All", tag: "all" },
+  { label: "🦷 Healthcare", tag: "healthcare" },
+  { label: "🍽️ Restaurant", tag: "restaurant" },
+  { label: "🎮 Gaming", tag: "gaming" },
+  { label: "🏋️ Fitness", tag: "fitness" },
+  { label: "👗 Fashion", tag: "fashion" },
+  { label: "🛒 E-Commerce", tag: "ecommerce" },
 ];
+
+function ScoreBar({ value, color }: { value: number; color: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <div className="flex-1 h-1 rounded-full dark:bg-white/8 bg-gray-200 overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: `${value}%` }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="h-full rounded-full"
+          style={{ background: color }}
+        />
+      </div>
+      <span className="text-[10px] font-bold dark:text-gray-400 text-gray-500 w-6 text-right">{value}</span>
+    </div>
+  );
+}
 
 function ShareMenu({ url, title, onClose }: { url: string; title: string; onClose: () => void }) {
   const [copied, setCopied] = useState(false);
@@ -114,20 +70,12 @@ function ShareMenu({ url, title, onClose }: { url: string; title: string; onClos
       className="absolute bottom-full right-0 mb-2 w-44 rounded-2xl dark:bg-gray-900 bg-white border dark:border-white/10 border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.2)] overflow-hidden z-10"
       onClick={(e) => e.stopPropagation()}
     >
-      <button
-        onClick={copyLink}
-        className="w-full flex items-center gap-3 px-4 py-3 text-sm dark:text-gray-200 text-gray-800 dark:hover:bg-white/5 hover:bg-gray-50 transition-colors"
-        data-interactive
-      >
+      <button onClick={copyLink} className="w-full flex items-center gap-3 px-4 py-3 text-sm dark:text-gray-200 text-gray-800 dark:hover:bg-white/5 hover:bg-gray-50 transition-colors" data-interactive>
         {copied ? <Check size={14} className="text-green-400 flex-shrink-0" /> : <Copy size={14} className="flex-shrink-0" />}
         {copied ? "Copied!" : "Copy Link"}
       </button>
       <div className="h-px dark:bg-white/8 bg-gray-100 mx-3" />
-      <button
-        onClick={waShare}
-        className="w-full flex items-center gap-3 px-4 py-3 text-sm dark:text-gray-200 text-gray-800 dark:hover:bg-white/5 hover:bg-gray-50 transition-colors"
-        data-interactive
-      >
+      <button onClick={waShare} className="w-full flex items-center gap-3 px-4 py-3 text-sm dark:text-gray-200 text-gray-800 dark:hover:bg-white/5 hover:bg-gray-50 transition-colors" data-interactive>
         <MessageCircle size={14} className="text-green-500 flex-shrink-0" />
         Share on WhatsApp
       </button>
@@ -141,16 +89,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.08, duration: 0.5 }}
+      layout
+      initial={{ opacity: 0, y: 24, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ delay: index * 0.06, duration: 0.4 }}
       whileHover={{ y: -6 }}
-      className="group glass-panel rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.15)] transition-all duration-300"
+      className="group glass-panel rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.12)] transition-all duration-300"
       data-testid={`project-card-${project.id}`}
     >
       {/* Thumbnail */}
       <div className={`relative h-52 bg-gradient-to-br ${project.gradient} flex items-center justify-center overflow-hidden`}>
         <div className="absolute inset-0 backdrop-blur-[1px]" />
+
+        {/* Decorative mockup */}
         <div className="relative z-10 w-48 h-32 rounded-lg bg-black/30 border border-white/10 p-3 backdrop-blur-sm">
           <div className="w-full h-2.5 rounded bg-white/20 mb-2" />
           <div className="w-3/4 h-2 rounded bg-white/15 mb-3" />
@@ -159,8 +111,21 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <div className="h-12 rounded bg-white/10" />
           </div>
         </div>
+
+        {/* Category badge */}
         <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-black/50 text-white backdrop-blur-sm border border-white/10">
-          {project.category}
+          {project.icon} {project.category}
+        </span>
+
+        {/* Live status badge */}
+        <span className="absolute top-4 right-4 flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 backdrop-blur-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block" />
+          {project.status}
+        </span>
+
+        {/* Completion date */}
+        <span className="absolute bottom-3 right-4 text-[10px] text-gray-400 font-medium">
+          {project.completedAt}
         </span>
       </div>
 
@@ -169,17 +134,28 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <h3 className="text-lg font-bold dark:text-white text-gray-900 mb-2 group-hover:text-primary transition-colors">
           {project.title}
         </h3>
-        <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed mb-5">
+        <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed mb-4">
           {project.description}
         </p>
 
+        {/* Performance scores */}
+        <div className="mb-4 space-y-1.5">
+          <div className="flex items-center gap-2 mb-1">
+            <Zap size={10} className="text-yellow-400" />
+            <span className="text-[10px] font-semibold dark:text-gray-500 text-gray-400 uppercase tracking-wide">Performance</span>
+          </div>
+          <ScoreBar value={project.performance} color="linear-gradient(90deg,#3b82f6,#8b5cf6)" />
+          <div className="flex items-center gap-2 mt-1.5 mb-1">
+            <TrendingUp size={10} className="text-green-400" />
+            <span className="text-[10px] font-semibold dark:text-gray-500 text-gray-400 uppercase tracking-wide">SEO</span>
+          </div>
+          <ScoreBar value={project.seo} color="linear-gradient(90deg,#10b981,#3b82f6)" />
+        </div>
+
         {/* Tech pills */}
-        <div className="flex flex-wrap gap-2 mb-5">
+        <div className="flex flex-wrap gap-1.5 mb-5">
           {project.tech.map((t) => (
-            <span
-              key={t}
-              className="px-2.5 py-1 rounded-full text-xs font-semibold dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-600"
-            >
+            <span key={t} className="px-2.5 py-1 rounded-full text-xs font-semibold dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-600">
               {t}
             </span>
           ))}
@@ -201,7 +177,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </a>
           )}
 
-          {/* Share button */}
           {hasLink && (
             <div className="relative">
               <button
@@ -214,11 +189,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               </button>
               <AnimatePresence>
                 {shareOpen && (
-                  <ShareMenu
-                    url={project.link}
-                    title={project.title}
-                    onClose={() => setShareOpen(false)}
-                  />
+                  <ShareMenu url={project.link} title={project.title} onClose={() => setShareOpen(false)} />
                 )}
               </AnimatePresence>
             </div>
@@ -231,6 +202,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
 export function Projects() {
   const [, setLocation] = useLocation();
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filtered = activeFilter === "all"
+    ? projects
+    : projects.filter((p) => p.filterTag === activeFilter);
 
   return (
     <div className="min-h-screen pt-28 pb-24">
@@ -256,7 +232,7 @@ export function Projects() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-10"
         >
           <div className="text-sm font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-aurora mb-4 uppercase">
             Portfolio
@@ -269,11 +245,46 @@ export function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+        {/* Filter bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="flex flex-wrap gap-2 mb-10"
+        >
+          {FILTERS.map((f) => (
+            <button
+              key={f.tag}
+              onClick={() => setActiveFilter(f.tag)}
+              className={`relative px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                activeFilter === f.tag
+                  ? "text-white shadow-[0_0_16px_rgba(59,130,246,0.35)]"
+                  : "dark:text-gray-400 text-gray-600 dark:bg-white/5 bg-gray-100 dark:hover:bg-white/10 hover:bg-gray-200"
+              }`}
+              data-interactive
+            >
+              {activeFilter === f.tag && (
+                <motion.div
+                  layoutId="filter-pill"
+                  className="absolute inset-0 rounded-full bg-gradient-aurora"
+                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10">{f.label}</span>
+            </button>
           ))}
-        </div>
+        </motion.div>
+
+        {/* Grid */}
+        <LayoutGroup>
+          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+              {filtered.map((project, i) => (
+                <ProjectCard key={project.id} project={project} index={i} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </LayoutGroup>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -285,10 +296,7 @@ export function Projects() {
             Have a project in mind? Let's build something premium together.
           </p>
           <button
-            onClick={() => {
-              setLocation("/");
-              setTimeout(() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }), 100);
-            }}
+            onClick={() => { setLocation("/"); setTimeout(() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }), 100); }}
             className="px-8 py-4 rounded-full bg-gradient-aurora text-white font-bold hover:shadow-[0_0_24px_rgba(59,130,246,0.4)] transition-all"
             data-interactive
             data-testid="cta-start-project"
