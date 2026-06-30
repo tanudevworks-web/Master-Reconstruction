@@ -13,6 +13,7 @@ import { SocialProofCounter } from "@/components/sections/SocialProofCounter";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { FounderProfile } from "@/components/sections/FounderProfile";
 import { Services } from "@/components/sections/Services";
+import { TechStack } from "@/components/sections/TechStack";
 import { FeaturedWork } from "@/components/sections/FeaturedWork";
 import { BeforeAfterSlider } from "@/components/sections/BeforeAfterSlider";
 import { DemoRequest } from "@/components/sections/DemoRequest";
@@ -91,6 +92,7 @@ function HomePage() {
       <Services />
 
       {/* — Proof — */}
+      <TechStack />
       <FeaturedWork />
       <BeforeAfterSlider />
       <DemoRequest />
