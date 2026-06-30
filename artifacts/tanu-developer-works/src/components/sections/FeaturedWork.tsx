@@ -13,7 +13,11 @@ const projects = [
     accentColor: "#0d9488",
     mockup: {
       nav: ["Home", "Services", "Doctors", "Book Now"],
-      hero: { headline: "Trusted Dental Care", sub: "Advanced dentistry for the whole family", cta: "Book Appointment" },
+      hero: {
+        headline: "Trusted Dental Care",
+        sub: "Advanced dentistry for the whole family",
+        cta: "Book Appointment",
+      },
       stat1: { label: "Happy Patients", value: "2,400+" },
       stat2: { label: "Years Experience", value: "12+" },
       cards: [
@@ -26,13 +30,17 @@ const projects = [
   {
     title: " Serai Fa Restaurant",
     category: "Premium Dining",
-    link: "",
+    link: "https://serai-fa-premium.vercel.app/",
     color: "from-orange-500/20 to-red-900/20",
     hoverColor: "group-hover:border-orange-500/50",
     accentColor: "#ea580c",
     mockup: {
       nav: ["Menu", "Reserve", "Gallery", "Contact"],
-      hero: { headline: "Authentic Indian Cuisine", sub: "Family recipes passed down since 1985", cta: "Reserve Table" },
+      hero: {
+        headline: "Authentic Indian Cuisine",
+        sub: "Family recipes passed down since 1985",
+        cta: "Reserve Table",
+      },
       stat1: { label: "Menu Items", value: "80+" },
       stat2: { label: "Avg Rating", value: "4.9 ★" },
       cards: [
@@ -43,15 +51,19 @@ const projects = [
     },
   },
   {
-    title: "NexGen Gaming",
+    title: "Minimal Ecommerce ",
     category: "Business Website",
-    link: "",
+    link: "https://ecommerce-pro-tanu.vercel.app/",
     color: "from-blue-500/20 to-indigo-900/20",
     hoverColor: "group-hover:border-blue-500/50",
     accentColor: "#2563eb",
     mockup: {
       nav: ["About", "Services", "Portfolio", "Contact"],
-      hero: { headline: "Grow Your Business", sub: "Enterprise solutions for modern companies", cta: "Get Started" },
+      hero: {
+        headline: "Grow Your Business",
+        sub: "Enterprise solutions for modern companies",
+        cta: "Get Started",
+      },
       stat1: { label: "Clients Served", value: "500+" },
       stat2: { label: "Projects Done", value: "1,200+" },
       cards: [
@@ -62,15 +74,19 @@ const projects = [
     },
   },
   {
-    title: "",
-    category: "Creative Portfolio",
-    link: "",
+    title: "Gaming Website",
+    category: "NexGen Gaming",
+    link: "https://tanugamehub.vercel.app/",
     color: "from-purple-500/20 to-pink-900/20",
     hoverColor: "group-hover:border-purple-500/50",
     accentColor: "#9333ea",
     mockup: {
       nav: ["Work", "About", "Skills", "Hire Me"],
-      hero: { headline: "UI/UX Designer", sub: "Crafting beautiful digital experiences", cta: "View Work" },
+      hero: {
+        headline: "UI/UX Designer",
+        sub: "Crafting beautiful digital experiences",
+        cta: "View Work",
+      },
       stat1: { label: "Projects", value: "45+" },
       stat2: { label: "Clients", value: "30+" },
       cards: [
@@ -83,13 +99,17 @@ const projects = [
   {
     title: "IronFit Gym",
     category: "Fitness Center",
-    link: "",
+    link: "https://aurum-gym.vercel.app/",
     color: "from-yellow-500/20 to-amber-900/20",
     hoverColor: "group-hover:border-yellow-500/50",
     accentColor: "#d97706",
     mockup: {
       nav: ["Classes", "Trainers", "Plans", "Join Now"],
-      hero: { headline: "Transform Your Body", sub: "Expert coaching and premium equipment", cta: "Start Free Trial" },
+      hero: {
+        headline: "Transform Your Body",
+        sub: "Expert coaching and premium equipment",
+        cta: "Start Free Trial",
+      },
       stat1: { label: "Members", value: "1,800+" },
       stat2: { label: "Trainers", value: "25+" },
       cards: [
@@ -100,15 +120,19 @@ const projects = [
     },
   },
   {
-    title: "LuxuryNest Realty",
-    category: "Real Estate",
-    link: "",
+    title: "LuxuryNest Sea Clothing",
+    category: "Clothing Site",
+    link: "https://sea-clothing.vercel.app/",
     color: "from-emerald-500/20 to-green-900/20",
     hoverColor: "group-hover:border-emerald-500/50",
     accentColor: "#059669",
     mockup: {
       nav: ["Buy", "Rent", "Listings", "Contact"],
-      hero: { headline: "Find Your Dream Home", sub: "Premium properties across India's top cities", cta: "Browse Listings" },
+      hero: {
+        headline: "Find Your Dream Home",
+        sub: "Premium properties across India's top cities",
+        cta: "Browse Listings",
+      },
       stat1: { label: "Properties", value: "320+" },
       stat2: { label: "Sold This Year", value: "140+" },
       cards: [
@@ -120,7 +144,13 @@ const projects = [
   },
 ];
 
-function DesktopMockup({ mockup, accentColor }: { mockup: typeof projects[0]["mockup"]; accentColor: string }) {
+function DesktopMockup({
+  mockup,
+  accentColor,
+}: {
+  mockup: (typeof projects)[0]["mockup"];
+  accentColor: string;
+}) {
   return (
     <div className="absolute inset-5 rounded-xl bg-[#0d1117] border border-white/10 shadow-2xl overflow-hidden group-hover:scale-[1.03] transition-transform duration-700">
       {/* Browser chrome */}
@@ -132,36 +162,58 @@ function DesktopMockup({ mockup, accentColor }: { mockup: typeof projects[0]["mo
       </div>
       {/* Site navbar */}
       <div className="w-full h-7 bg-[#0d1117] border-b border-white/5 flex items-center px-4 gap-3">
-        <div className="w-12 h-2 rounded-sm" style={{ backgroundColor: accentColor + "cc" }} />
+        <div
+          className="w-12 h-2 rounded-sm"
+          style={{ backgroundColor: accentColor + "cc" }}
+        />
         <div className="flex-1" />
         {mockup.nav.map((n) => (
-          <div key={n} className="h-1.5 rounded-sm bg-white/20" style={{ width: `${n.length * 5}px` }} />
+          <div
+            key={n}
+            className="h-1.5 rounded-sm bg-white/20"
+            style={{ width: `${n.length * 5}px` }}
+          />
         ))}
       </div>
       {/* Hero area */}
       <div className="px-4 pt-4 pb-2">
-        <div className="h-2 rounded-sm mb-2 w-3/5" style={{ backgroundColor: accentColor + "99" }} />
+        <div
+          className="h-2 rounded-sm mb-2 w-3/5"
+          style={{ backgroundColor: accentColor + "99" }}
+        />
         <div className="h-1.5 rounded-sm bg-white/15 mb-1 w-4/5" />
         <div className="h-1.5 rounded-sm bg-white/10 mb-3 w-2/3" />
-        <div className="inline-flex h-4 px-3 rounded-sm items-center" style={{ backgroundColor: accentColor }}>
+        <div
+          className="inline-flex h-4 px-3 rounded-sm items-center"
+          style={{ backgroundColor: accentColor }}
+        >
           <div className="h-1 w-10 rounded-sm bg-white/80" />
         </div>
       </div>
       {/* Stats row */}
       <div className="flex gap-2 px-4 pt-1 pb-2">
         <div className="flex-1 rounded-lg bg-white/[0.04] border border-white/8 p-2">
-          <div className="h-2.5 rounded-sm mb-1 w-2/3" style={{ backgroundColor: accentColor + "cc" }} />
+          <div
+            className="h-2.5 rounded-sm mb-1 w-2/3"
+            style={{ backgroundColor: accentColor + "cc" }}
+          />
           <div className="h-1.5 rounded-sm bg-white/20 w-1/2" />
         </div>
         <div className="flex-1 rounded-lg bg-white/[0.04] border border-white/8 p-2">
-          <div className="h-2.5 rounded-sm mb-1 w-2/3" style={{ backgroundColor: accentColor + "cc" }} />
+          <div
+            className="h-2.5 rounded-sm mb-1 w-2/3"
+            style={{ backgroundColor: accentColor + "cc" }}
+          />
           <div className="h-1.5 rounded-sm bg-white/20 w-1/2" />
         </div>
       </div>
       {/* Service cards row */}
       <div className="flex gap-1.5 px-4 pt-1">
         {mockup.cards.map((c) => (
-          <div key={c.label} className="flex-1 rounded-lg bg-white/[0.04] border border-white/8 p-2 flex flex-col items-center gap-1">
+          <div
+            key={c.label}
+            className="flex-1 rounded-lg bg-white/[0.04] border border-white/8 p-2 flex flex-col items-center gap-1"
+          >
             <span className="text-[10px]">{c.icon}</span>
             <div className="h-1 rounded-sm bg-white/25 w-full" />
           </div>
@@ -171,15 +223,29 @@ function DesktopMockup({ mockup, accentColor }: { mockup: typeof projects[0]["mo
   );
 }
 
-function ProjectCard({ project, index }: { project: typeof projects[0]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   const mouseXSpring = useSpring(x);
   const mouseYSpring = useSpring(y);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
+  const rotateX = useTransform(
+    mouseYSpring,
+    [-0.5, 0.5],
+    ["7.5deg", "-7.5deg"],
+  );
+  const rotateY = useTransform(
+    mouseXSpring,
+    [-0.5, 0.5],
+    ["-7.5deg", "7.5deg"],
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -189,7 +255,10 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
     y.set(yPct);
   };
 
-  const handleMouseLeave = () => { x.set(0); y.set(0); };
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
 
   const hasLink = project.link && project.link.trim() !== "";
 
@@ -209,17 +278,28 @@ function ProjectCard({ project, index }: { project: typeof projects[0]; index: n
       data-cursor-text={hasLink ? "View Project" : "Coming Soon"}
       data-interactive
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-40`} />
-      <DesktopMockup mockup={project.mockup} accentColor={project.accentColor} />
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-40`}
+      />
+      <DesktopMockup
+        mockup={project.mockup}
+        accentColor={project.accentColor}
+      />
       <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 flex justify-between items-end">
         <div>
-          <p className="text-sm font-medium text-gray-400 mb-1">{project.category}</p>
+          <p className="text-sm font-medium text-gray-400 mb-1">
+            {project.category}
+          </p>
           <h3 className="text-2xl font-bold text-white">{project.title}</h3>
           {!hasLink && (
-            <span className="text-xs text-gray-500 mt-1 inline-block">Coming soon</span>
+            <span className="text-xs text-gray-500 mt-1 inline-block">
+              Coming soon
+            </span>
           )}
         </div>
-        <div className={`w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0 ${hasLink ? "bg-white text-black" : "bg-white/20 text-white"}`}>
+        <div
+          className={`w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0 ${hasLink ? "bg-white text-black" : "bg-white/20 text-white"}`}
+        >
           <ArrowUpRight size={20} />
         </div>
       </div>
@@ -248,7 +328,9 @@ export function FeaturedWork() {
             <div className="text-sm font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-aurora mb-4 uppercase">
               Portfolio
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-gray-900">Selected Work</h2>
+            <h2 className="text-4xl md:text-5xl font-bold dark:text-white text-gray-900">
+              Selected Work
+            </h2>
           </motion.div>
           <motion.button
             initial={{ opacity: 0, x: 20 }}
