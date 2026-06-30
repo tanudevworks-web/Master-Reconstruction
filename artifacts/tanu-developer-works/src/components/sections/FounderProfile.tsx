@@ -469,46 +469,6 @@ export function FounderProfile() {
               ))}
             </div>
 
-            {/* Technologies */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <h3 className="text-xl font-bold mb-5 dark:text-white text-gray-900">
-                Technology Stack
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "React",
-                  "TypeScript",
-                  "Tailwind CSS",
-                  "Next.js",
-                  "JavaScript",
-                  "HTML5",
-                  "CSS3",
-                  "Framer Motion",
-                  "Figma",
-                  "Git",
-                  "Vite",
-                  "Node.js",
-                ].map((tech, i) => (
-                  <motion.span
-                    key={tech}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.04 }}
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    className="px-3 py-1.5 rounded-full glass-panel text-xs font-semibold dark:text-gray-300 text-gray-700 hover:border-blue-500/50 hover:shadow-[0_0_12px_rgba(59,130,246,0.2)] transition-all duration-200 cursor-default"
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-
             {/* Journey Timeline */}
             <div>
               <h3 className="text-xl font-bold mb-7 dark:text-white text-gray-900">

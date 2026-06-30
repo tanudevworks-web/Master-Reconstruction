@@ -8,7 +8,6 @@ import { SocialActivityWidget } from "@/components/SocialActivityWidget";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/sections/Hero";
-import { Stats } from "@/components/sections/Stats";
 import { SocialProofCounter } from "@/components/sections/SocialProofCounter";
 import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
 import { FounderProfile } from "@/components/sections/FounderProfile";
@@ -83,7 +82,6 @@ function HomePage() {
     <main>
       {/* — Awareness — */}
       <Hero />
-      <Stats />
       <SocialProofCounter />
       <WhyChooseUs />
 
