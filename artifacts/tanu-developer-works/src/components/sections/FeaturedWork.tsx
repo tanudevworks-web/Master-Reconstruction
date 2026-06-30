@@ -24,7 +24,7 @@ const projects = [
     },
   },
   {
-    title: "Spice Garden Restaurant",
+    title: " Serai Fa Restaurant",
     category: "Premium Dining",
     link: "",
     color: "from-orange-500/20 to-red-900/20",
@@ -43,7 +43,7 @@ const projects = [
     },
   },
   {
-    title: "NexGen Corporate",
+    title: "NexGen Gaming",
     category: "Business Website",
     link: "",
     color: "from-blue-500/20 to-indigo-900/20",
@@ -62,7 +62,7 @@ const projects = [
     },
   },
   {
-    title: "Alex Rivera Portfolio",
+    title: "",
     category: "Creative Portfolio",
     link: "",
     color: "from-purple-500/20 to-pink-900/20",
