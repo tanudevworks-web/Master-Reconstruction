@@ -187,7 +187,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
         {/* CTAs */}
         <div className="flex items-center gap-2">
-          {hasLink ? (
+          {hasLink && (
             <a
               href={project.link}
               target="_blank"
@@ -199,10 +199,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               View Project
               <ExternalLink size={14} />
             </a>
-          ) : (
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full dark:bg-white/5 bg-gray-100 dark:text-gray-500 text-gray-400 text-sm font-bold cursor-default">
-              Coming Soon
-            </span>
           )}
 
           {/* Share button */}

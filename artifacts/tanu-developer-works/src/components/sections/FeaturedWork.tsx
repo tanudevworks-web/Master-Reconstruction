@@ -275,7 +275,7 @@ function ProjectCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`relative w-full aspect-[4/3] rounded-2xl glass-panel border border-white/10 ${project.hoverColor} transition-colors duration-500 overflow-hidden group ${hasLink ? "cursor-pointer" : "cursor-default"}`}
-      data-cursor-text={hasLink ? "View Project" : "Coming Soon"}
+      data-cursor-text="View Project"
       data-interactive
     >
       <div
@@ -291,11 +291,6 @@ function ProjectCard({
             {project.category}
           </p>
           <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-          {!hasLink && (
-            <span className="text-xs text-gray-500 mt-1 inline-block">
-              Coming soon
-            </span>
-          )}
         </div>
         <div
           className={`w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0 ${hasLink ? "bg-white text-black" : "bg-white/20 text-white"}`}
